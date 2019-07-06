@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MISIVSWebApp", "MISIVSWebApp\MISIVSWebApp.csproj", "{5D6F93F0-61C0-4395-A48E-980E18E6BBAD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D6F93F0-61C0-4395-A48E-980E18E6BBAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D6F93F0-61C0-4395-A48E-980E18E6BBAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D6F93F0-61C0-4395-A48E-980E18E6BBAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D6F93F0-61C0-4395-A48E-980E18E6BBAD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1C6103A4-36E6-47C6-A92A-DD8FFE569934}
+	EndGlobalSection
+EndGlobal
