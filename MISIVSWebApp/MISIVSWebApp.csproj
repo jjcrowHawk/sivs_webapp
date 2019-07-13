@@ -187,10 +187,14 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\FichasController.cs" />
+    <Compile Include="Controllers\OpcionController.cs" />
+    <Compile Include="Controllers\SyncroController.cs" />
+    <Compile Include="Controllers\WebAPI\FichasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SeccionController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\ItemVariableController.cs" />
+    <Compile Include="Controllers\SeccionWebController.cs" />
+    <Compile Include="Controllers\VariableController.cs" />
+    <Compile Include="Controllers\WebAPI\VariablesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -273,6 +277,26 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Seccion\Create.cshtml" />
+    <Content Include="Views\Seccion\Delete.cshtml" />
+    <Content Include="Views\Seccion\Details.cshtml" />
+    <Content Include="Views\Seccion\Edit.cshtml" />
+    <Content Include="Views\Seccion\Index.cshtml" />
+    <Content Include="Views\Variable\Create.cshtml" />
+    <Content Include="Views\Variable\Delete.cshtml" />
+    <Content Include="Views\Variable\Details.cshtml" />
+    <Content Include="Views\Variable\Edit.cshtml" />
+    <Content Include="Views\Variable\Index.cshtml" />
+    <Content Include="Views\ItemVariable\Create.cshtml" />
+    <Content Include="Views\ItemVariable\Delete.cshtml" />
+    <Content Include="Views\ItemVariable\Details.cshtml" />
+    <Content Include="Views\ItemVariable\Edit.cshtml" />
+    <Content Include="Views\ItemVariable\Index.cshtml" />
+    <Content Include="Views\Opcion\Create.cshtml" />
+    <Content Include="Views\Opcion\Delete.cshtml" />
+    <Content Include="Views\Opcion\Details.cshtml" />
+    <Content Include="Views\Opcion\Edit.cshtml" />
+    <Content Include="Views\Opcion\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

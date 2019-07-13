@@ -1,5 +1,6 @@
 namespace MISIVSWebApp.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -28,9 +29,11 @@ namespace MISIVSWebApp.Models
 
         public virtual ItemVariable ItemVariable { get; set; }
 
+        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RespuestaOpcionSimple> RespuestaOpcionSimple { get; set; }
 
+        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RespuestaOpcion> RespuestaOpcion { get; set; }
     }

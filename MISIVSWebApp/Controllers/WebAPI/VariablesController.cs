@@ -10,46 +10,46 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using MISIVSWebApp.Models;
 
-namespace MISIVSWebApp.Controllers
+namespace MISIVSWebApp.Controllers.WebAPI
 {
-    public class SeccionController : ApiController
+    public class VariablesController : ApiController
     {
         private DBHelper db = new DBHelper();
 
-        // GET: api/Seccion
-        public IQueryable<Seccion> GetSeccion()
+        // GET: api/Variables
+        public IQueryable<Variable> GetVariable()
         {
-            return db.Seccion;
+            return db.Variable;
         }
 
-        // GET: api/Seccion/5
-        [ResponseType(typeof(Seccion))]
-        public IHttpActionResult GetSeccion(int id)
+        // GET: api/Variables/5
+        [ResponseType(typeof(Variable))]
+        public IHttpActionResult GetVariable(int id)
         {
-            Seccion seccion = db.Seccion.Find(id);
-            if (seccion == null)
+            Variable variable = db.Variable.Find(id);
+            if (variable == null)
             {
                 return NotFound();
             }
 
-            return Ok(seccion);
+            return Ok(variable);
         }
 
-        // PUT: api/Seccion/5
+        // PUT: api/Variables/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutSeccion(int id, Seccion seccion)
+        public IHttpActionResult PutVariable(int id, Variable variable)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != seccion.id)
+            if (id != variable.id)
             {
                 return BadRequest();
             }
 
-            db.Entry(seccion).State = EntityState.Modified;
+            db.Entry(variable).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace MISIVSWebApp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SeccionExists(id))
+                if (!VariableExists(id))
                 {
                     return NotFound();
                 }
@@ -70,38 +70,35 @@ namespace MISIVSWebApp.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Seccion
-        [ResponseType(typeof(Seccion))]
-        public IHttpActionResult PostSeccion(Seccion seccion)
+        // POST: api/Variables
+        [ResponseType(typeof(Variable))]
+        public IHttpActionResult PostVariable(Variable variable)
         {
-            System.Diagnostics.Debug.WriteLine("Este es enviado como :" + seccion.activo);
-            
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Seccion.Add(seccion);
+            db.Variable.Add(variable);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = seccion.id }, seccion);
+            return CreatedAtRoute("DefaultApi", new { id = variable.id }, variable);
         }
 
-        // DELETE: api/Seccion/5
-        [ResponseType(typeof(Seccion))]
-        public IHttpActionResult DeleteSeccion(int id)
+        // DELETE: api/Variables/5
+        [ResponseType(typeof(Variable))]
+        public IHttpActionResult DeleteVariable(int id)
         {
-            Seccion seccion = db.Seccion.Find(id);
-            if (seccion == null)
+            Variable variable = db.Variable.Find(id);
+            if (variable == null)
             {
                 return NotFound();
             }
 
-            db.Seccion.Remove(seccion);
+            db.Variable.Remove(variable);
             db.SaveChanges();
 
-            return Ok(seccion);
+            return Ok(variable);
         }
 
         protected override void Dispose(bool disposing)
@@ -113,9 +110,9 @@ namespace MISIVSWebApp.Controllers
             base.Dispose(disposing);
         }
 
-        private bool SeccionExists(int id)
+        private bool VariableExists(int id)
         {
-            return db.Seccion.Count(e => e.id == id) > 0;
+            return db.Variable.Count(e => e.id == id) > 0;
         }
     }
 }
