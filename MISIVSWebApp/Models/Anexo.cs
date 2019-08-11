@@ -12,11 +12,11 @@ namespace MISIVSWebApp.Models
         public int id { get; set; }
 
         [Required]
-        [StringLength(200)]
+        [StringLength(500)]
         public string url_anexo { get; set; }
 
         [Required]
-        [StringLength(15)]
+        [StringLength(20)]
         public string tipo { get; set; }
 
         public int ficha { get; set; }

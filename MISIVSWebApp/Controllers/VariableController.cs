@@ -17,7 +17,7 @@ namespace MISIVSWebApp.Controllers
         // GET: Variable
         public ActionResult Index()
         {
-            var variable = db.Variable.Include(v => v.Seccion1);
+            var variable = db.Variable.Include(v => v.Seccion);
             return View(variable.ToList());
         }
 

@@ -8,7 +8,7 @@ namespace MISIVSWebApp.Models
     public partial class DBHelper : DbContext
     {
         public DBHelper()
-            : base("name=DBContextHelper")
+            : base("name=DBContextSIVS")
         {
         }
 
@@ -30,9 +30,6 @@ namespace MISIVSWebApp.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
-            base.OnModelCreating(modelBuilder);
-
             modelBuilder.Entity<Anexo>()
                 .Property(e => e.url_anexo)
                 .IsUnicode(false);
@@ -121,9 +118,9 @@ namespace MISIVSWebApp.Models
                 .HasForeignKey(e => e.respuesta)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Respuesta>()
+            modelBuilder.Entity<RespuestaOpcionMultiple>()
                 .HasMany(e => e.RespuestaOpcion)
-                .WithRequired(e => e.Respuesta1)
+                .WithRequired(e => e.RespuestaOpcionMultiple)
                 .HasForeignKey(e => e.respuesta)
                 .WillCascadeOnDelete(false);
 
@@ -153,7 +150,7 @@ namespace MISIVSWebApp.Models
 
             modelBuilder.Entity<Seccion>()
                 .HasMany(e => e.Variable)
-                .WithOptional(e => e.Seccion1)
+                .WithOptional(e => e.Seccion)
                 .HasForeignKey(e => e.seccion);
 
             modelBuilder.Entity<Usuario>()
@@ -178,7 +175,7 @@ namespace MISIVSWebApp.Models
 
             modelBuilder.Entity<Variable>()
                 .HasMany(e => e.ItemVariable)
-                .WithRequired(e => e.Variable1)
+                .WithRequired(e => e.Variable)
                 .HasForeignKey(e => e.variable)
                 .WillCascadeOnDelete(false);
 
@@ -188,7 +185,7 @@ namespace MISIVSWebApp.Models
 
             modelBuilder.Entity<Vivienda>()
                 .Property(e => e.elevacion)
-                .HasPrecision(4, 2);
+                .HasPrecision(10, 5);
 
             modelBuilder.Entity<Vivienda>()
                 .Property(e => e.sector)
@@ -199,11 +196,14 @@ namespace MISIVSWebApp.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Vivienda>()
+                .Property(e => e.ubicacion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Vivienda>()
                 .HasMany(e => e.Ficha)
-                .WithRequired(e => e.Vivienda1)
+                .WithRequired(e => e.Vivienda)
                 .HasForeignKey(e => e.vivienda)
                 .WillCascadeOnDelete(false);
-
         }
     }
 }

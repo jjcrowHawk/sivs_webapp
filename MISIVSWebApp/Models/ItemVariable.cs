@@ -1,6 +1,5 @@
 namespace MISIVSWebApp.Models
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -19,7 +18,7 @@ namespace MISIVSWebApp.Models
 
         public int id { get; set; }
 
-        //[Required]
+        [Required]
         [StringLength(70)]
         public string nombre { get; set; }
 
@@ -31,15 +30,12 @@ namespace MISIVSWebApp.Models
 
         public bool activo { get; set; }
 
-        public virtual Variable Variable1 { get; set; }
+        public virtual Variable Variable { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Opcion> Opcion { get; set; }
 
-        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Respuesta> Respuesta { get; set; }
-
-        public string nombreItemVariable => string.Format("{1} - {0}", nombre, Variable1.nombre);
     }
 }

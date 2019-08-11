@@ -17,6 +17,6 @@ namespace MISIVSWebApp.Models
 
         public virtual Opcion Opcion1 { get; set; }
 
-        public virtual Respuesta Respuesta1 { get; set; }
+        public virtual RespuestaOpcionMultiple RespuestaOpcionMultiple { get; set; }
     }
 }

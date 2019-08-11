@@ -1,5 +1,6 @@
 namespace MISIVSWebApp.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -23,6 +24,7 @@ namespace MISIVSWebApp.Models
 
         public bool obligatoria { get; set; }
 
+        
         public int? seccion { get; set; }
 
         public bool activo { get; set; }
@@ -30,6 +32,6 @@ namespace MISIVSWebApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItemVariable> ItemVariable { get; set; }
 
-        public virtual Seccion Seccion1 { get; set; }
+        public virtual Seccion Seccion { get; set; }
     }
 }

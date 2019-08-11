@@ -34,7 +34,7 @@ namespace MISIVSWebApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Anexo> Anexo { get; set; }
 
-        public virtual Vivienda Vivienda1 { get; set; }
+        public virtual Vivienda Vivienda { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Respuesta> Respuesta { get; set; }

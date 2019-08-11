@@ -15,7 +15,6 @@ namespace MISIVSWebApp.Models
             RespuestaTexto = new HashSet<RespuestaTexto>();
             RespuestaOpcionSimple = new HashSet<RespuestaOpcionSimple>();
             RespuestaOpcionMultiple = new HashSet<RespuestaOpcionMultiple>();
-            RespuestaOpcion = new HashSet<RespuestaOpcion>();
         }
 
         public int id { get; set; }
@@ -41,8 +40,5 @@ namespace MISIVSWebApp.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RespuestaOpcionMultiple> RespuestaOpcionMultiple { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RespuestaOpcion> RespuestaOpcion { get; set; }
     }
 }

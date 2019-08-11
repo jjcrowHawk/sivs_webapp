@@ -28,6 +28,7 @@ namespace MISIVSWebApp.App_Start
                 new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
 
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("multipart/form-data"));
         }
     }
 }
