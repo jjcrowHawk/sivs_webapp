@@ -14,13 +14,13 @@ namespace MISIVSWebApp.Controllers
     {
         private DBHelper db = new DBHelper();
 
-        // GET: SeccionWeb
+        // GET: Seccion
         public ActionResult Index()
         {
             return View(db.Seccion.ToList());
         }
 
-        // GET: SeccionWeb/Details/5
+        // GET: Seccion/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,13 +35,13 @@ namespace MISIVSWebApp.Controllers
             return View(seccion);
         }
 
-        // GET: SeccionWeb/Create
+        // GET: Seccion/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: SeccionWeb/Create
+        // POST: Seccion/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -58,7 +58,7 @@ namespace MISIVSWebApp.Controllers
             return View(seccion);
         }
 
-        // GET: SeccionWeb/Edit/5
+        // GET: Seccion/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,7 +73,7 @@ namespace MISIVSWebApp.Controllers
             return View(seccion);
         }
 
-        // POST: SeccionWeb/Edit/5
+        // POST: Seccion/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -89,7 +89,7 @@ namespace MISIVSWebApp.Controllers
             return View(seccion);
         }
 
-        // GET: SeccionWeb/Delete/5
+        // GET: Seccion/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,7 +104,7 @@ namespace MISIVSWebApp.Controllers
             return View(seccion);
         }
 
-        // POST: SeccionWeb/Delete/5
+        // POST: Seccion/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

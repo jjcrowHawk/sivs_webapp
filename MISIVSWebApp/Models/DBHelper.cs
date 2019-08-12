@@ -8,7 +8,7 @@ namespace MISIVSWebApp.Models
     public partial class DBHelper : DbContext
     {
         public DBHelper()
-            : base("name=DBContextSIVS")
+            : base("name=SIVSDB")
         {
         }
 
@@ -44,20 +44,20 @@ namespace MISIVSWebApp.Models
 
             modelBuilder.Entity<Ficha>()
                 .HasMany(e => e.Anexo)
-                .WithRequired(e => e.Ficha1)
-                .HasForeignKey(e => e.ficha)
+                .WithRequired(e => e.Ficha)
+                .HasForeignKey(e => e.ficha_anexo)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Ficha>()
                 .HasMany(e => e.Respuesta)
-                .WithRequired(e => e.Ficha1)
-                .HasForeignKey(e => e.ficha)
+                .WithRequired(e => e.Ficha)
+                .HasForeignKey(e => e.ficha_respuesta)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Ficha>()
                 .HasMany(e => e.SeccionFicha)
-                .WithRequired(e => e.Ficha1)
-                .HasForeignKey(e => e.ficha)
+                .WithRequired(e => e.Ficha)
+                .HasForeignKey(e => e.ficha_rel)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ItemVariable>()
@@ -71,13 +71,13 @@ namespace MISIVSWebApp.Models
             modelBuilder.Entity<ItemVariable>()
                 .HasMany(e => e.Opcion)
                 .WithRequired(e => e.ItemVariable)
-                .HasForeignKey(e => e.item)
+                .HasForeignKey(e => e.item_opcion)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ItemVariable>()
                 .HasMany(e => e.Respuesta)
                 .WithRequired(e => e.ItemVariable)
-                .HasForeignKey(e => e.item)
+                .HasForeignKey(e => e.item_respuesta)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Opcion>()
@@ -86,14 +86,14 @@ namespace MISIVSWebApp.Models
 
             modelBuilder.Entity<Opcion>()
                 .HasMany(e => e.RespuestaOpcionSimple)
-                .WithRequired(e => e.Opcion1)
-                .HasForeignKey(e => e.opcion)
+                .WithRequired(e => e.Opcion)
+                .HasForeignKey(e => e.opcion_respuestasimple)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Opcion>()
                 .HasMany(e => e.RespuestaOpcion)
-                .WithRequired(e => e.Opcion1)
-                .HasForeignKey(e => e.opcion)
+                .WithRequired(e => e.Opcion)
+                .HasForeignKey(e => e.opcion_respuesta)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Respuesta>()
@@ -102,8 +102,8 @@ namespace MISIVSWebApp.Models
 
             modelBuilder.Entity<Respuesta>()
                 .HasMany(e => e.RespuestaTexto)
-                .WithRequired(e => e.Respuesta1)
-                .HasForeignKey(e => e.respuesta)
+                .WithRequired(e => e.Respuesta)
+                .HasForeignKey(e => e.respuesta_texto)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Respuesta>()
@@ -114,14 +114,14 @@ namespace MISIVSWebApp.Models
 
             modelBuilder.Entity<Respuesta>()
                 .HasMany(e => e.RespuestaOpcionMultiple)
-                .WithRequired(e => e.Respuesta1)
-                .HasForeignKey(e => e.respuesta)
+                .WithRequired(e => e.Respuesta)
+                .HasForeignKey(e => e.respuesta_opcionmultiple)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<RespuestaOpcionMultiple>()
                 .HasMany(e => e.RespuestaOpcion)
                 .WithRequired(e => e.RespuestaOpcionMultiple)
-                .HasForeignKey(e => e.respuesta)
+                .HasForeignKey(e => e.respuesta_opcionmultiple)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<RespuestaTexto>()
@@ -134,8 +134,8 @@ namespace MISIVSWebApp.Models
 
             modelBuilder.Entity<Rol>()
                 .HasMany(e => e.Usuario)
-                .WithRequired(e => e.Rol1)
-                .HasForeignKey(e => e.rol)
+                .WithRequired(e => e.Rol)
+                .HasForeignKey(e => e.rol_usuario)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Seccion>()
@@ -144,14 +144,14 @@ namespace MISIVSWebApp.Models
 
             modelBuilder.Entity<Seccion>()
                 .HasMany(e => e.SeccionFicha)
-                .WithRequired(e => e.Seccion1)
-                .HasForeignKey(e => e.seccion)
+                .WithRequired(e => e.Seccion)
+                .HasForeignKey(e => e.seccion_rel)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Seccion>()
                 .HasMany(e => e.Variable)
                 .WithOptional(e => e.Seccion)
-                .HasForeignKey(e => e.seccion);
+                .HasForeignKey(e => e.seccion_variable);
 
             modelBuilder.Entity<Usuario>()
                 .Property(e => e.correo)
@@ -176,7 +176,7 @@ namespace MISIVSWebApp.Models
             modelBuilder.Entity<Variable>()
                 .HasMany(e => e.ItemVariable)
                 .WithRequired(e => e.Variable)
-                .HasForeignKey(e => e.variable)
+                .HasForeignKey(e => e.variable_item)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Vivienda>()
@@ -202,7 +202,7 @@ namespace MISIVSWebApp.Models
             modelBuilder.Entity<Vivienda>()
                 .HasMany(e => e.Ficha)
                 .WithRequired(e => e.Vivienda)
-                .HasForeignKey(e => e.vivienda)
+                .HasForeignKey(e => e.vivienda_ficha)
                 .WillCascadeOnDelete(false);
         }
     }

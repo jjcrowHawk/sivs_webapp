@@ -19,8 +19,8 @@ namespace MISIVSWebApp.Models
         [StringLength(20)]
         public string tipo { get; set; }
 
-        public int ficha { get; set; }
+        public int ficha_anexo { get; set; }
 
-        public virtual Ficha Ficha1 { get; set; }
+        public virtual Ficha Ficha { get; set; }
     }
 }

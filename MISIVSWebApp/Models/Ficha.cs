@@ -27,7 +27,7 @@ namespace MISIVSWebApp.Models
 
         public DateTime fecha_sincronizacion { get; set; }
 
-        public int vivienda { get; set; }
+        public int vivienda_ficha { get; set; }
 
         public bool activo { get; set; }
 

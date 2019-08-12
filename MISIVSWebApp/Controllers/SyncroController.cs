@@ -22,8 +22,8 @@ namespace MISIVSWebApp.Controllers
         private DBHelper db = new DBHelper();
 
         /*public HttpResponseMessage GetActualizacionFicha() {
-            IDictionary jsonData = new Dictionary<String,List<Seccion>>();
-            List<Seccion> secciones= db.Seccion.Where(s => s.activo == true).ToList();
+            IDictionary jsonData = new Dictionary<String,List<Seccion1>>();
+            List<Seccion1> secciones= db.Seccion1.Where(s => s.activo == true).ToList();
             jsonData.Add("secciones",secciones);                                                            
             var formatter = new JsonMediaTypeFormatter();
             formatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
@@ -33,12 +33,12 @@ namespace MISIVSWebApp.Controllers
 
         [Route("api/actualizarFichaTelefono")]
         [HttpGet]
-        public List<Seccion> GetActualizacionFicha()
+        public IQueryable<Seccion> GetActualizacionFicha()
         {
-            List<Seccion> secciones = db.Seccion.Where(s => s.activo == true).ToList();
-            foreach(Seccion s in secciones)
-                Trace.WriteLine("seccion: " +s.ToString());
-            return secciones;
+            /* List<Seccion> secciones = db.Seccion.Where(s => s.activo == true).ToList();
+             foreach(Seccion s in secciones)
+                 Trace.WriteLine("seccion1: " +s.ToString());*/
+            return db.Seccion.Where(s => s.activo == true);
         }
 
 

@@ -11,12 +11,12 @@ namespace MISIVSWebApp.Models
     {
         public int id { get; set; }
 
-        public int ficha { get; set; }
+        public int ficha_rel { get; set; }
 
-        public int seccion { get; set; }
+        public int seccion_rel { get; set; }
 
-        public virtual Ficha Ficha1 { get; set; }
+        public virtual Ficha Ficha { get; set; }
 
-        public virtual Seccion Seccion1 { get; set; }
+        public virtual Seccion Seccion { get; set; }
     }
 }

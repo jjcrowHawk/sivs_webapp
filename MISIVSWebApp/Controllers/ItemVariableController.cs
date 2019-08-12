@@ -14,14 +14,14 @@ namespace MISIVSWebApp.Controllers
     {
         private DBHelper db = new DBHelper();
 
-        // GET: ItemVariables
+        // GET: ItemVariable
         public ActionResult Index()
         {
             var itemVariable = db.ItemVariable.Include(i => i.Variable);
             return View(itemVariable.ToList());
         }
 
-        // GET: ItemVariables/Details/5
+        // GET: ItemVariable/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,43 +36,32 @@ namespace MISIVSWebApp.Controllers
             return View(itemVariable);
         }
 
-        // GET: ItemVariables/Create
+        // GET: ItemVariable/Create
         public ActionResult Create()
         {
-            ViewBag.variable = new SelectList(db.Variable, "id", "nombre");
-
-            List<SelectListItem> lst = new List<SelectListItem>();
-            lst.Add(new SelectListItem() { Text = "Texto", Value = "Texto" });
-            lst.Add(new SelectListItem() { Text = "Opcion Simple", Value = "OpSimple" });
-            lst.Add(new SelectListItem() { Text = "Opcion Multiple", Value = "OpMultiple" });
-
-            ViewBag.tipos = lst;
-
+            ViewBag.variable_item = new SelectList(db.Variable, "id", "nombre");
             return View();
         }
 
-        // POST: ItemVariables/Create
+        // POST: ItemVariable/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,nombre,tipo,variable,activo")] ItemVariable itemVariable)
+        public ActionResult Create([Bind(Include = "id,nombre,tipo,variable_item,activo")] ItemVariable itemVariable)
         {
             if (ModelState.IsValid)
             {
-                if (itemVariable.nombre == null || itemVariable.nombre.Equals("")){
-                    itemVariable.nombre = db.Variable.Find(itemVariable.variable).nombre;
-                }
                 db.ItemVariable.Add(itemVariable);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.variable = new SelectList(db.Variable, "id", "nombre", itemVariable.variable);
+            ViewBag.variable_item = new SelectList(db.Variable, "id", "nombre", itemVariable.variable_item);
             return View(itemVariable);
         }
 
-        // GET: ItemVariables/Edit/5
+        // GET: ItemVariable/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -84,16 +73,16 @@ namespace MISIVSWebApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.variable = new SelectList(db.Variable, "id", "nombre", itemVariable.variable);
+            ViewBag.variable_item = new SelectList(db.Variable, "id", "nombre", itemVariable.variable_item);
             return View(itemVariable);
         }
 
-        // POST: ItemVariables/Edit/5
+        // POST: ItemVariable/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nombre,tipo,variable,activo")] ItemVariable itemVariable)
+        public ActionResult Edit([Bind(Include = "id,nombre,tipo,variable_item,activo")] ItemVariable itemVariable)
         {
             if (ModelState.IsValid)
             {
@@ -101,11 +90,11 @@ namespace MISIVSWebApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.variable = new SelectList(db.Variable, "id", "nombre", itemVariable.variable);
+            ViewBag.variable_item = new SelectList(db.Variable, "id", "nombre", itemVariable.variable_item);
             return View(itemVariable);
         }
 
-        // GET: ItemVariables/Delete/5
+        // GET: ItemVariable/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -120,7 +109,7 @@ namespace MISIVSWebApp.Controllers
             return View(itemVariable);
         }
 
-        // POST: ItemVariables/Delete/5
+        // POST: ItemVariable/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

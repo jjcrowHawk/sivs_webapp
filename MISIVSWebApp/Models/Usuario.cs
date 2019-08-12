@@ -29,8 +29,8 @@ namespace MISIVSWebApp.Models
 
         public bool activo { get; set; }
 
-        public int rol { get; set; }
+        public int rol_usuario { get; set; }
 
-        public virtual Rol Rol1 { get; set; }
+        public virtual Rol Rol { get; set; }
     }
 }

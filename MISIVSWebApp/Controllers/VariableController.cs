@@ -39,7 +39,7 @@ namespace MISIVSWebApp.Controllers
         // GET: Variable/Create
         public ActionResult Create()
         {
-            ViewBag.seccion = new SelectList(db.Seccion, "id", "nombre");
+            ViewBag.seccion_variable = new SelectList(db.Seccion, "id", "nombre");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace MISIVSWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,nombre,obligatoria,seccion,activo")] Variable variable)
+        public ActionResult Create([Bind(Include = "id,nombre,obligatoria,seccion_variable,activo")] Variable variable)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace MISIVSWebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.seccion = new SelectList(db.Seccion, "id", "nombre", variable.seccion);
+            ViewBag.seccion_variable = new SelectList(db.Seccion, "id", "nombre", variable.seccion_variable);
             return View(variable);
         }
 
@@ -73,7 +73,7 @@ namespace MISIVSWebApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.seccion = new SelectList(db.Seccion, "id", "nombre", variable.seccion);
+            ViewBag.seccion_variable = new SelectList(db.Seccion, "id", "nombre", variable.seccion_variable);
             return View(variable);
         }
 
@@ -82,7 +82,7 @@ namespace MISIVSWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nombre,obligatoria,seccion,activo")] Variable variable)
+        public ActionResult Edit([Bind(Include = "id,nombre,obligatoria,seccion_variable,activo")] Variable variable)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace MISIVSWebApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.seccion = new SelectList(db.Seccion, "id", "nombre", variable.seccion);
+            ViewBag.seccion_variable = new SelectList(db.Seccion, "id", "nombre", variable.seccion_variable);
             return View(variable);
         }
 

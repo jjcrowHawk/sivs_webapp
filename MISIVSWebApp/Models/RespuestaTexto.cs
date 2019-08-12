@@ -15,8 +15,8 @@ namespace MISIVSWebApp.Models
         [StringLength(500)]
         public string texto { get; set; }
 
-        public int respuesta { get; set; }
+        public int respuesta_texto { get; set; }
 
-        public virtual Respuesta Respuesta1 { get; set; }
+        public virtual Respuesta Respuesta { get; set; }
     }
 }

@@ -17,9 +17,9 @@ namespace MISIVSWebApp.Models
 
         public int id { get; set; }
 
-        public int respuesta { get; set; }
+        public int respuesta_opcionmultiple { get; set; }
 
-        public virtual Respuesta Respuesta1 { get; set; }
+        public virtual Respuesta Respuesta { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RespuestaOpcion> RespuestaOpcion { get; set; }

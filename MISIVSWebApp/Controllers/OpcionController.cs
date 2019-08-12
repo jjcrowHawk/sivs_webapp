@@ -39,7 +39,7 @@ namespace MISIVSWebApp.Controllers
         // GET: Opcion/Create
         public ActionResult Create()
         {
-            ViewBag.item = new SelectList(db.ItemVariable, "id", "nombreItemVariable");
+            ViewBag.item_opcion = new SelectList(db.ItemVariable, "id", "nombre");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace MISIVSWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,nombre,item,activo")] Opcion opcion)
+        public ActionResult Create([Bind(Include = "id,nombre,item_opcion,activo")] Opcion opcion)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace MISIVSWebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.item = new SelectList(db.ItemVariable, "id", "nombre", opcion.item);
+            ViewBag.item_opcion = new SelectList(db.ItemVariable, "id", "nombre", opcion.item_opcion);
             return View(opcion);
         }
 
@@ -73,7 +73,7 @@ namespace MISIVSWebApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.item = new SelectList(db.ItemVariable, "id", "nombre", opcion.item);
+            ViewBag.item_opcion = new SelectList(db.ItemVariable, "id", "nombre", opcion.item_opcion);
             return View(opcion);
         }
 
@@ -82,7 +82,7 @@ namespace MISIVSWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nombre,item,activo")] Opcion opcion)
+        public ActionResult Edit([Bind(Include = "id,nombre,item_opcion,activo")] Opcion opcion)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace MISIVSWebApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.item = new SelectList(db.ItemVariable, "id", "nombre", opcion.item);
+            ViewBag.item_opcion = new SelectList(db.ItemVariable, "id", "nombre", opcion.item_opcion);
             return View(opcion);
         }
 

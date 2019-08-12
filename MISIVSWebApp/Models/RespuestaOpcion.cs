@@ -11,11 +11,11 @@ namespace MISIVSWebApp.Models
     {
         public int id { get; set; }
 
-        public int opcion { get; set; }
+        public int opcion_respuesta { get; set; }
 
-        public int respuesta { get; set; }
+        public int respuesta_opcionmultiple { get; set; }
 
-        public virtual Opcion Opcion1 { get; set; }
+        public virtual Opcion Opcion { get; set; }
 
         public virtual RespuestaOpcionMultiple RespuestaOpcionMultiple { get; set; }
     }

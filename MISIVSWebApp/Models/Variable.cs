@@ -1,6 +1,5 @@
 namespace MISIVSWebApp.Models
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -24,8 +23,7 @@ namespace MISIVSWebApp.Models
 
         public bool obligatoria { get; set; }
 
-        
-        public int? seccion { get; set; }
+        public int? seccion_variable { get; set; }
 
         public bool activo { get; set; }
 
