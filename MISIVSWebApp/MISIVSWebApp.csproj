@@ -252,8 +252,10 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <None Include="Properties\PublishProfiles\SIVSWebApp - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\SIVSWebApp - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\SIVSWebApp - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\SIVSWebApp - Web Deploy2.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -266,6 +268,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\navbar.js" />
+    <Content Include="Views\Shared\navbar.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
