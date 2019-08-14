@@ -1,0 +1,79 @@
+﻿.center-fit {
+    max-width: 100%;
+    max-height: 100vh;
+    margin: 0;
+}
+
+
+.profile-img {
+    max-width: 25%;
+    max-height: 25vh;
+    display: block;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#title {
+    background-color: #307FE2;
+    padding: 25px;
+    text-align: center;
+    color: white;
+}
+
+#loginForm {
+    padding: 25px;
+    text-align: center;
+    display: block;
+    margin: auto;
+}
+
+input[type=text], select {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #307FE2;
+}
+
+input[type=text] {
+    background-image: url('../Content/Static/avatar.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding-left: 45px;
+}
+
+
+input[type=password], select {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #307FE2;
+}
+
+input[type=password] {
+    background-image: url('../Content/Static/key.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding-left: 45px;
+}
+
+
+input[type=submit], select {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #307FE2;
+    color: white;
+}
