@@ -224,12 +224,20 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\home_index.css" />
     <Content Include="Content\login.css" />
     <Content Include="Content\Static\avatar.png" />
+    <Content Include="Content\Static\block.png" />
+    <Content Include="Content\Static\document.png" />
+    <Content Include="Content\Static\document2.png" />
+    <Content Include="Content\Static\house.png" />
+    <Content Include="Content\Static\house2.png" />
     <Content Include="Content\Static\key.png" />
     <Content Include="Content\Static\login.jpg" />
     <Content Include="Content\Static\login1.jpg" />
+    <Content Include="Content\Static\map.png" />
     <Content Include="Content\Static\placeholder.png" />
+    <Content Include="Content\Static\pointmap.png" />
     <Content Include="Content\Static\profile.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -288,8 +296,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\ConsultSectors.cshtml" />
+    <Content Include="Views\Home\ConsultHomes.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Seccion\Create.cshtml" />
     <Content Include="Views\Seccion\Delete.cshtml" />
@@ -312,6 +320,7 @@
     <Content Include="Views\Opcion\Edit.cshtml" />
     <Content Include="Views\Opcion\Index.cshtml" />
     <Content Include="Views\Accounts\Login.cshtml" />
+    <Content Include="Views\Home\ConsultReports.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

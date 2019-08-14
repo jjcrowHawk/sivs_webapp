@@ -23,7 +23,8 @@
         <div class="col-md-7">
             <h3 id="title"> System Login </h3>
             <img src="~/Content/Static/profile.jpg" alt="profile picture" class="profile-img">
-            <form id="loginForm" action= @Url.Action("Index", "Home") >
+            <form id="loginForm" method="post"  >
+                <text style="color: red;">@ViewBag.message</text>
                 <input placeholder="Username or Email" id="tf_username" name="username" type="text" /><br />
                 <input placeholder="Password" id="tf_password" name="password" type="password" /><br />
 

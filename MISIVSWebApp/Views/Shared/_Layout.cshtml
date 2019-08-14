@@ -25,13 +25,13 @@
                     @Html.ActionLink("Home", "Index", "Home")
                 </li>
                 <li>
-                    @Html.ActionLink("Consult Sectors", "About", "Home")
+                    @Html.ActionLink("Consult Sectors", "ConsultSectors", "Home")
                 </li>
                 <li>
-                    @Html.ActionLink("Consult Houses", "Contact", "Home")
+                    @Html.ActionLink("Consult Homes", "ConsultHomes", "Home")
                 </li>
                 <li>
-                    <a class="action" href="#">Reports</a>
+                    @Html.ActionLink("Consult Reports", "ConsultReports", "Home")
                 </li>
                 <li>
                     @Html.ActionLink("Items Variables", "Index", "ItemVariable")
@@ -43,7 +43,7 @@
                     @Html.ActionLink("Section", "Index", "Seccion")
                 </li>
                 <li>
-                    @Html.ActionLink("Varible", "Index", "Variable")
+                    @Html.ActionLink("Variable", "Index", "Variable")
                 </li>
             </ul>
         </nav>
@@ -59,7 +59,7 @@
                     </div>
                     <ul class="navbar-nav ml-auto flex-nowrap">
                         <!-- Botón provisional para Logout-->
-                        <form class="form-inline" method="post" action=@Url.Action("Login", "Accounts")>
+                        <form class="form-inline" method="get" action=@Url.Action("Login", "Accounts")>
                             <button id="btn_sign_out" class="btn btn-sm" type="submit"><u>Sign Out</u></button>
                         </form>
                     </ul>

@@ -3,24 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MISIVSWebApp.Models;
 
 namespace MISIVSWebApp.Controllers
 {
     public class HomeController : Controller
     {
+        private DBHelper db = new DBHelper();
+
         public ActionResult Index()
         {
+
+
+            ViewBag.Sectors = 23;
+            ViewBag.Homes = 100;
+            ViewBag.Reports = 100;
+            ViewBag.Blocks = 60;
+
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult ConsultSectors()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "ConsultSectors";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult ConsultHomes()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult ConsultReports()
         {
             ViewBag.Message = "Your contact page.";
 
