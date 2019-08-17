@@ -1,17 +1,85 @@
-﻿@{
-    ViewBag.Title = "Consult Reports";
+﻿
+<link rel="stylesheet" href="~/Content/ConsultReports.css"/>
+
+
+
+<h3>@ViewBag.Title</h3>
+<hr />
+<table id="resultTable" class="display">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Home ID</th>
+            <th>Sector</th>
+            <th>Inspector</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>ID</th>
+            <th>Home ID</th>
+            <th>Sector</th>
+            <th>Inspector</th>
+            <th>Actions</th>
+        </tr>
+    </tfoot>
+
+</table>
+
+
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+
+@section scripts{ 
+ 
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            //$("#resultTable").DataTable();
+            //document.getElementById("btn_search").onclick = function() {getViviendasByInspector(1)};
+            getViviendasByInspector(1);
+
+
+
+
+        });
+
+        function getViviendasByInspector(id_inspector) {
+            $("#resultTable").DataTable({
+                "destroy": true,
+                "ajax": {
+                    "url": "/Home/GetByInspector",
+                    "type": "GET",
+                    "datatype": "json"
+                }, "columns": [
+                    {"data":"id"},
+                    {"data":"inspeccion_id"},
+                    {"data":"sector"},
+                    { "data": "direccion" },
+                    { "data": "id" }
+                    
+                ],
+                columnDefs: [
+            { width: 240, targets: 0},
+            { width: 200, targets: 1 },
+            { width: 250, targets: 2},
+            { width: 250, targets: 3 },
+            { width: 250, className: "text-center", targets: 4, render: function(data){
+                return `<a href="/Viviendas/Details/` + data + `" class="btn btn-primary btn-sm" role="button"><i class="fas fa-eye"></i></a>
+                        <a href="/Viviendas/Edit/` + data + `" class="btn btn-success btn-sm" role="button"><i class="fas fa-pen"></i></a>
+                        <a href="/Viviendas/Delete/` + data + `" class="btn btn-danger btn-sm" role="button"><i class="fas fa-times"></i></a>
+                        `
+            }}
+            ]
+
+
+
+
+            });
+        }
+
+
+
+    </script>
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>

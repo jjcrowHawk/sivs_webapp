@@ -187,6 +187,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ViviendasController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\ItemVariableController.cs" />
     <Compile Include="Controllers\OpcionController.cs" />
@@ -224,6 +225,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ConsultReports.css" />
     <Content Include="Content\home_index.css" />
     <Content Include="Content\login.css" />
     <Content Include="Content\Static\avatar.png" />
@@ -321,6 +323,11 @@
     <Content Include="Views\Opcion\Index.cshtml" />
     <Content Include="Views\Accounts\Login.cshtml" />
     <Content Include="Views\Home\ConsultReports.cshtml" />
+    <Content Include="Views\Viviendas\Create.cshtml" />
+    <Content Include="Views\Viviendas\Delete.cshtml" />
+    <Content Include="Views\Viviendas\Details.cshtml" />
+    <Content Include="Views\Viviendas\Edit.cshtml" />
+    <Content Include="Views\Viviendas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

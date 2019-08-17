@@ -1,0 +1,69 @@
+﻿@model MISIVSWebApp.Models.Vivienda
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Vivienda</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.inspeccion_id)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.inspeccion_id)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.edad_construcción)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.edad_construcción)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.elevacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.elevacion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.sector)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.sector)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.direccion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.direccion)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ubicacion)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ubicacion)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

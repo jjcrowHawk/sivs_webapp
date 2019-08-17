@@ -39,9 +39,20 @@ namespace MISIVSWebApp.Controllers
 
         public ActionResult ConsultReports()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Title = "Consult Reports";
+            
 
             return View();
         }
+
+        public ActionResult GetByInspector()
+        {
+
+            db.Configuration.ProxyCreationEnabled = false;
+            var viviendoList = db.Vivienda.ToList<Vivienda>();
+            return Json(new { data = viviendoList }, JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 }
