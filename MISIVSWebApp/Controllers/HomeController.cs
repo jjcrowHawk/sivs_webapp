@@ -49,8 +49,8 @@ namespace MISIVSWebApp.Controllers
         {
 
             db.Configuration.ProxyCreationEnabled = false;
-            var viviendoList = db.Vivienda.ToList<Vivienda>();
-            return Json(new { data = viviendoList }, JsonRequestBehavior.AllowGet);
+            var fichaList = db.Ficha.ToList();
+            return Json(new { data = fichaList }, JsonRequestBehavior.AllowGet);
         }
 
 

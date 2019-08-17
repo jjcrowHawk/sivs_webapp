@@ -8,10 +8,11 @@
 <table id="resultTable" class="display">
     <thead>
         <tr>
-            <th>ID</th>
+            <th>Report ID</th>
             <th>Home ID</th>
             <th>Sector</th>
             <th>Inspector</th>
+            <th>Active</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -21,6 +22,7 @@
             <th>Home ID</th>
             <th>Sector</th>
             <th>Inspector</th>
+            <th>Active</th>
             <th>Actions</th>
         </tr>
     </tfoot>
@@ -54,9 +56,10 @@
                     "datatype": "json"
                 }, "columns": [
                     {"data":"id"},
-                    {"data":"inspeccion_id"},
-                    {"data":"sector"},
-                    { "data": "direccion" },
+                    {"data":"vivienda_ficha"},
+                    {"data":"Vivienda"},
+                    { "data": "inspector" },
+                    { "data": "activo" },
                     { "data": "id" }
                     
                 ],
@@ -65,10 +68,11 @@
             { width: 200, targets: 1 },
             { width: 250, targets: 2},
             { width: 250, targets: 3 },
-            { width: 250, className: "text-center", targets: 4, render: function(data){
-                return `<a href="/Viviendas/Details/` + data + `" class="btn btn-primary btn-sm" role="button"><i class="fas fa-eye"></i></a>
-                        <a href="/Viviendas/Edit/` + data + `" class="btn btn-success btn-sm" role="button"><i class="fas fa-pen"></i></a>
-                        <a href="/Viviendas/Delete/` + data + `" class="btn btn-danger btn-sm" role="button"><i class="fas fa-times"></i></a>
+            { width: 250, targets: 4 },
+            { width: 250, className: "text-center", targets: 5, render: function(data){
+                return `<a href="/FichasWeb/Details/` + data + `" class="btn btn-primary btn-sm" role="button"><i class="fas fa-eye"></i></a>
+                        <a href="/FichasWeb/Edit/` + data + `" class="btn btn-success btn-sm" role="button"><i class="fas fa-pen"></i></a>
+                        <a href="/FichasWeb/Delete/` + data + `" class="btn btn-danger btn-sm" role="button"><i class="fas fa-times"></i></a>
                         `
             }}
             ]
