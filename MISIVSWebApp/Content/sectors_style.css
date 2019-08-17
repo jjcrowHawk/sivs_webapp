@@ -1,0 +1,50 @@
+﻿.title_container {
+    column-count:2;
+}
+
+.seccion_title {
+    color: #0072C6;
+    /*font-family: Lato;*/
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 34px;
+    text-align: left;
+}
+
+.back_home {
+    text-align:right;
+    float:right;
+    color: #969FAA;
+    font-family: Lato;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 23px;
+    text-align: left;
+    text-decoration: underline;
+}
+
+
+.title_separator {
+    border: 1px solid #5A6978;
+}
+
+
+.content_container{
+    margin: 1.5% 0% 0% 0%;
+    padding-left: 0%;
+}
+
+.header_text {
+    color: #47525E;
+    font-family: Lato;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+}
+
+.sector_select_box{
+    background-color: #00BFFF;
+    padding-top: 1%;
+    margin-top: 2%;
+}

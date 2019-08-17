@@ -1,7 +1,34 @@
-﻿@{
+﻿@model MISIVSWebApp.Models.Vivienda
+
+@{
     ViewBag.Title = "Consult Sectors";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<link rel="stylesheet" href="~/Content/sectors_style.css">
+<div class="title_container">
+    <h5 class="seccion_title">@ViewBag.Title</h5>
+    <a class="back_home" href="@Url.Action("index","Home")">Home</a>
+</div>
+<div class="title_separator"></div>
+<div class="container content_container">
+    <p class="header_text">Please choose the sector you want to analyze in the list or choose on the map:</p>
+    
 
-<p>Use this area to provide additional information.</p>
+    <div class="container">
+        <div class="col-md-4 sector_select_box">
+            <div class="form-group">
+                <select id="sector_select" class="form-control">
+                    <option disabled> Select a Sector..</option>
+                    @foreach (var sec in ViewBag.sectores)
+                    {
+                        <option value="@sec">@sec</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group text-center pb-3">
+                <button onclick="" class="btn btn-primary">Consult</button>
+            </div>
+        </div>
+        <div class="col-md-8"></div>
+    </div>
+    
+</div>

@@ -239,6 +239,7 @@
     <Content Include="Content\Static\placeholder.png" />
     <Content Include="Content\Static\pointmap.png" />
     <Content Include="Content\Static\profile.jpg" />
+    <Content Include="Content\sectors_style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

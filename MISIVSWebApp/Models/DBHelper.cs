@@ -60,6 +60,14 @@ namespace MISIVSWebApp.Models
                 .HasForeignKey(e => e.ficha_rel)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Ficha>()
+                .Property(f => f.fecha_inspeccion)
+                .HasColumnType("datetime2");
+
+            modelBuilder.Entity<Ficha>()
+                .Property(f => f.fecha_sincronizacion)
+                .HasColumnType("datetime2");
+
             modelBuilder.Entity<ItemVariable>()
                 .Property(e => e.nombre)
                 .IsUnicode(false);
