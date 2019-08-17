@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MISIVSWebApp.Models.Vivienda>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.inspeccion_id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.edad_construcción)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.elevacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sector)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ubicacion)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.inspeccion_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.edad_construcción)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.elevacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sector)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ubicacion)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
