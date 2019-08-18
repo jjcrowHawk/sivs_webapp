@@ -17,6 +17,7 @@ namespace MISIVSWebApp.Models
             Anexo = new HashSet<Anexo>();
             Respuesta = new HashSet<Respuesta>();
             SeccionFicha = new HashSet<SeccionFicha>();
+            EvaluacionFicha = new HashSet<EvaluacionFicha>();
 
             fecha_inspeccion = DateTime.Now;
             fecha_sincronizacion = DateTime.Now;
@@ -51,5 +52,9 @@ namespace MISIVSWebApp.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SeccionFicha> SeccionFicha { get; set; }
+
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EvaluacionFicha> EvaluacionFicha { get; set; }
     }
 }
