@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MISIVSWebApp.Models.ModeloMatematico>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="column-count:2">
+    <h2>Math models</h2>
+    <p style="float:right; text-decoration:underline">
+        @Html.ActionLink("Create New Model", "Create")
+    </p>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            model name
+            @*Html.DisplayNameFor(model => model.nombre)*@
+        </th>
+        <th>
+            min model value
+            @*Html.DisplayNameFor(model => model.valor_min)*@
+        </th>
+        <th>
+            max model value
+            @*Html.DisplayNameFor(model => model.valor_max)*@
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.valor_min)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.valor_max)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
