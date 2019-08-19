@@ -12,7 +12,6 @@
             <th>Home ID</th>
             <th>Sector</th>
             <th>Inspector</th>
-            <th>Active</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -22,7 +21,6 @@
             <th>Home ID</th>
             <th>Sector</th>
             <th>Inspector</th>
-            <th>Active</th>
             <th>Actions</th>
         </tr>
     </tfoot>
@@ -56,10 +54,9 @@
                     "datatype": "json"
                 }, "columns": [
                     {"data":"id"},
-                    {"data":"vivienda_ficha"},
-                    {"data":"Vivienda"},
+                    {"data":"Vivienda.inspeccion_id"},
+                    {"data":"Vivienda.sector"},
                     { "data": "inspector" },
-                    { "data": "activo" },
                     { "data": "id" }
                     
                 ],
@@ -67,9 +64,8 @@
             { width: 240, targets: 0},
             { width: 200, targets: 1 },
             { width: 250, targets: 2},
-            { width: 250, targets: 3 },
-            { width: 250, targets: 4 },
-            { width: 250, className: "text-center", targets: 5, render: function(data){
+            { width: 250, targets: 3 }, 
+            { width: 250, className: "text-center", targets: 4, render: function(data){
                 return `<a href="/FichasWeb/Details/` + data + `" class="btn btn-primary btn-sm" role="button"><i class="fas fa-eye"></i></a>
                         <a href="/FichasWeb/Edit/` + data + `" class="btn btn-success btn-sm" role="button"><i class="fas fa-pen"></i></a>
                         <a href="/FichasWeb/Delete/` + data + `" class="btn btn-danger btn-sm" role="button"><i class="fas fa-times"></i></a>

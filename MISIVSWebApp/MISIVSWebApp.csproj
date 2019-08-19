@@ -187,6 +187,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Group.cs" />
     <Compile Include="Controllers\FichasWebController.cs" />
     <Compile Include="Controllers\ViviendasController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
@@ -227,6 +228,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ConsultReports.css" />
+    <Content Include="Content\ConsultSectors.css" />
     <Content Include="Content\home_index.css" />
     <Content Include="Content\login.css" />
     <Content Include="Content\Static\avatar.png" />
