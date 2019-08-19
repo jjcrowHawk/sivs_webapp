@@ -1,38 +1,35 @@
 namespace MISIVSWebApp.Models
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Seccion")]
-    public partial class Seccion
+    [Table("ModeloMatematico")]
+    public partial class ModeloMatematico
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Seccion()
+        public ModeloMatematico()
         {
-            SeccionFicha = new HashSet<SeccionFicha>();
-            Variable = new HashSet<Variable>();
+            EvaluacionFicha = new HashSet<EvaluacionFicha>();
+            ParametroModelo = new HashSet<ParametroModelo>();
         }
 
         public int id { get; set; }
 
         [Required]
-        [StringLength(70)]
+        [StringLength(200)]
         public string nombre { get; set; }
 
-        [DefaultValue(true)]
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
-        public bool activo { get; set; }
+        public decimal? valor_min { get; set; }
 
-        [JsonIgnore]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SeccionFicha> SeccionFicha { get; set; }
+        public decimal? valor_max { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Variable> Variable { get; set; }
+        public virtual ICollection<EvaluacionFicha> EvaluacionFicha { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ParametroModelo> ParametroModelo { get; set; }
     }
 }

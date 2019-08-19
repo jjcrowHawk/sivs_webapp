@@ -202,10 +202,20 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Anexo.cs" />
+    <Compile Include="Models\Clasificacion.cs" />
+    <Compile Include="Models\ClasificacionEvaluacion.cs" />
+    <Compile Include="Models\EvaluacionFicha.cs" />
     <Compile Include="Models\Ficha.cs" />
+    <Compile Include="Models\ItemParametro.cs" />
     <Compile Include="Models\ItemVariable.cs" />
     <Compile Include="Models\DBHelper.cs" />
+    <Compile Include="Models\DBMathModelHelper.cs" />
+    <Compile Include="Models\ModeloMatematico.cs" />
     <Compile Include="Models\Opcion.cs" />
+    <Compile Include="Models\OpcionesClasificacion.cs" />
+    <Compile Include="Models\Parametro.cs" />
+    <Compile Include="Models\ParametroEvaluacion.cs" />
+    <Compile Include="Models\ParametroModelo.cs" />
     <Compile Include="Models\Respuesta.cs" />
     <Compile Include="Models\RespuestaOpcion.cs" />
     <Compile Include="Models\RespuestaOpcionMultiple.cs" />
@@ -244,6 +254,7 @@
     <Content Include="Content\Static\placeholder.png" />
     <Content Include="Content\Static\pointmap.png" />
     <Content Include="Content\Static\profile.jpg" />
+    <Content Include="Content\sectors_style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

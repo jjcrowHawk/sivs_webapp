@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Data.Entity;
 
@@ -17,12 +18,15 @@ namespace MISIVSWebApp.Controllers
 
         public ActionResult Index()
         {
-
-
-            ViewBag.Sectors = 23;
-            ViewBag.Homes = 100;
-            ViewBag.Reports = 100;
-            ViewBag.Blocks = 60;
+          
+            var num_sectores= db.Vivienda.GroupBy((v) => v.sector).Select((group) => new { name= group.Key, count= group.Count()}).ToList().Count();
+            var num_fichas = db.Ficha.Where((f) => f.activo == true).ToList().Count();
+            var num_casas = db.Vivienda.ToList().Count();
+            Trace.WriteLine("query:"+num_sectores);
+            ViewBag.Sectors = num_sectores;
+            ViewBag.Homes = num_casas;
+            ViewBag.Reports = num_fichas;
+            ViewBag.Blocks ="No seas sapo, no preguntes";
 
             return View();
         }
@@ -30,10 +34,6 @@ namespace MISIVSWebApp.Controllers
         public ActionResult ConsultSectors()
         {
 
-            List<int> list = new List<int>();
-            list.Add(2);
-            list.Add(3);
-            list.Add(7);
 
 
 

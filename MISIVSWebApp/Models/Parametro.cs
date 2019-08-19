@@ -1,51 +1,39 @@
 namespace MISIVSWebApp.Models
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ItemVariable")]
-    public partial class ItemVariable
+    [Table("Parametro")]
+    public partial class Parametro
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ItemVariable()
+        public Parametro()
         {
-            Opcion = new HashSet<Opcion>();
-            Respuesta = new HashSet<Respuesta>();
+            Clasificacion = new HashSet<Clasificacion>();
             ItemParametro = new HashSet<ItemParametro>();
+            ParametroModelo = new HashSet<ParametroModelo>();
+            ParametroEvaluacion = new HashSet<ParametroEvaluacion>();
         }
 
         public int id { get; set; }
 
         [Required]
-        [StringLength(70)]
+        [StringLength(200)]
         public string nombre { get; set; }
 
-        [Required]
-        [StringLength(10)]
-        public string tipo { get; set; }
-
-        public int variable_item { get; set; }
-
-        [DefaultValue(true)]
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
-        public bool activo { get; set; }
-
-        public virtual Variable Variable { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Opcion> Opcion { get; set; }
+        public virtual ICollection<Clasificacion> Clasificacion { get; set; }
 
-        [JsonIgnore]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Respuesta> Respuesta { get; set; }
-
-        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItemParametro> ItemParametro { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ParametroModelo> ParametroModelo { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ParametroEvaluacion> ParametroEvaluacion { get; set; }
     }
 }

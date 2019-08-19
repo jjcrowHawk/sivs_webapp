@@ -3,6 +3,7 @@ namespace MISIVSWebApp.Models
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -15,6 +16,7 @@ namespace MISIVSWebApp.Models
         {
             RespuestaOpcionSimple = new HashSet<RespuestaOpcionSimple>();
             RespuestaOpcion = new HashSet<RespuestaOpcion>();
+            OpcionClasificacion = new HashSet<OpcionesClasificacion>();
         }
 
         public int id { get; set; }
@@ -25,6 +27,8 @@ namespace MISIVSWebApp.Models
 
         public int item_opcion { get; set; }
 
+        [DefaultValue(true)]
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
         public bool activo { get; set; }
 
         public virtual ItemVariable ItemVariable { get; set; }
@@ -36,5 +40,9 @@ namespace MISIVSWebApp.Models
         [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RespuestaOpcion> RespuestaOpcion { get; set; }
+
+        [JsonIgnore]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OpcionesClasificacion> OpcionClasificacion { get; set; }
     }
 }

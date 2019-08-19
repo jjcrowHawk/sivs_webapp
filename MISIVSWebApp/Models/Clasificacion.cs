@@ -1,38 +1,39 @@
 namespace MISIVSWebApp.Models
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Seccion")]
-    public partial class Seccion
+    [Table("Clasificacion")]
+    public partial class Clasificacion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Seccion()
+        public Clasificacion()
         {
-            SeccionFicha = new HashSet<SeccionFicha>();
-            Variable = new HashSet<Variable>();
+            ClasificacionEvaluacion = new HashSet<ClasificacionEvaluacion>();
+            OpcionesClasificacion = new HashSet<OpcionesClasificacion>();
         }
 
         public int id { get; set; }
 
-        [Required]
-        [StringLength(70)]
+        [StringLength(200)]
         public string nombre { get; set; }
 
-        [DefaultValue(true)]
-        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
-        public bool activo { get; set; }
+        public int puntaje { get; set; }
 
-        [JsonIgnore]
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SeccionFicha> SeccionFicha { get; set; }
+        [StringLength(1)]
+        public string categoria { get; set; }
+
+        public int parametro_clasificacion { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Variable> Variable { get; set; }
+        public virtual ICollection<ClasificacionEvaluacion> ClasificacionEvaluacion { get; set; }
+
+        public virtual Parametro Parametro { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OpcionesClasificacion> OpcionesClasificacion { get; set; }
     }
 }

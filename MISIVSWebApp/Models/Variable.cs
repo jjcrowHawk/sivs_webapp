@@ -1,7 +1,9 @@
 namespace MISIVSWebApp.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -25,6 +27,8 @@ namespace MISIVSWebApp.Models
 
         public int? seccion_variable { get; set; }
 
+        [DefaultValue(true)]
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
         public bool activo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

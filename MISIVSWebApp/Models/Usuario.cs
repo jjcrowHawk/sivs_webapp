@@ -1,7 +1,9 @@
 namespace MISIVSWebApp.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -27,6 +29,8 @@ namespace MISIVSWebApp.Models
         [StringLength(200)]
         public string contrasena { get; set; }
 
+        [DefaultValue(true)]
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
         public bool activo { get; set; }
 
         public int rol_usuario { get; set; }
