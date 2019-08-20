@@ -3,32 +3,151 @@
 @{
     ViewBag.Title = "Consult Sectors";
 }
-<link rel="stylesheet" href="~/Content/sectors_style.css">
-<div class="title_container">
-    <h5 class="seccion_title">@ViewBag.Title</h5>
-    <a class="back_home" href="@Url.Action("index","Home")">Home</a>
-</div>
-<div class="title_separator"></div>
-<div class="container content_container">
-    <p class="header_text">Please choose the sector you want to analyze in the list or choose on the map:</p>
-    
 
-    <div class="container">
-        <div class="col-md-4 sector_select_box">
-            <div class="form-group">
-                <select id="sector_select" class="form-control">
-                    <option disabled> Select a Sector..</option>
-                    @foreach (var sec in ViewBag.sectores)
-                    {
-                        <option value="@sec">@sec</option>
-                    }
-                </select>
+<link rel="stylesheet" href="~/Content/ConsultSectors.css" />
+
+
+<h2>@ViewBag.Title</h2>
+<hr />
+<div class="row seachBox reloadable_content">
+    <div class="col-md-2">
+        <div class="abc">
+            <p class="center">Choose a sector:</p>
+        </div>
+    </div>
+    <select class="col-md-2 selector" id="selector">
+        @foreach (var item in ViewBag.sectores)
+        {
+            <option value="@item.Key">@item.Key</option>
+        }
+    </select>
+    <div class="col-md-4">
+        <div class="abc">
+            <button id="btn_search" class="button" type="button">Search</button>
+        </div>
+    </div>
+</div>
+<div id="ResultPanel">
+    <h3>Sector Information</h3>
+    <hr />
+    <div class="reloadable_content">
+        <div class="row seachBox">
+            <div class="col-md-2">
+                <div class="info-class">
+                    <img src='~/Content/Static/profile.jpg' alt='Home Picture' class='img'>
+                </div>
             </div>
-            <div class="form-group text-center pb-3">
-                <button onclick="" class="btn btn-primary">Consult</button>
+            <div class="col-md-4">
+                <div class="info-class" id="sectorName">
+                    <text class="bold">Sector Name:</text>
+                    
+                </div>
+                <div class="info-class" id="numberHomes">
+                    <text class="bold">Numbers of register homes:</text>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="info-class" id="averageVulnerability">
+                    <text class="bold">Average vulnerability Index:</text>
+                </div>
+
             </div>
         </div>
-        <div class="col-md-8"></div>
+
     </div>
+
+
+    <h3>Sector Statistics</h3>
+    <hr />
+    <div class="row seachBox reloadable_content">
+        <div class="col-md-4">
+            <div class="abc">
+                <p class="center">Choose a Feature to Consult:</p>
+            </div>
+        </div>
+        <select class="col-md-2 selector" id="selector">
+            <option value="Use">Use</option>
+            <option value="Material">Material</option>
+            <option value="Structure">Structure</option>
+            <option value="Quality">Quality</option>
+        </select>
+        <div class="col-md-4">
+            <div class="abc">
+                <button id="btn_search2" class="button" type="button">Search</button>
+            </div>
+        </div>
+    </div>
+
+
+    <h3>Registered Homes</h3>
+    <hr />
+    <div class="reloadable_content" id="div_homes">
+
+
+    </div>
+
     
+
+
+
 </div>
+
+
+
+
+
+@section scripts{ 
+    <script>
+        $("#btn_search").click(function () {
+            $("#ResultPanel").css("visibility", "visible");
+            var selectedSector = $("#selector").children("option:selected").val();
+            $(".remove").remove();
+            loadDataSector(selectedSector);
+            loadDataHomes(selectedSector);
+
+        });
+
+        function loadDataHomes(selectedSector) {
+            $.get("/Home/ViviendasBySector/" + selectedSector, function (data, status) {
+                var arreglo = data.data;
+                $("#div_homes").append("<div class='remove row div_homes_columns'></div>");
+                for (var i = 0; i < arreglo.length; i++) {
+                    var column = $([
+                        "<div class='col-md-3'>",
+                        "   <div class='info-class bloque'>",
+                        "       <img src='/Content/Static/profile.jpg' alt='Home Picture' class='img'>",
+                        "       <p class='center white_text'>" + arreglo[i]["inspeccion_id"] + "</p>",
+                        "       <a class='button_variation' href='/VulnerabilityReport/"+arreglo[i]["id"]+"'>View Vulnerability Report</a>",
+                        "       <a class='button_variation' href='/Viviendas/Details/"+arreglo[i]["id"]+"'>View Information Report</a>",
+                        "   </div>",
+                        "</div>"
+                    ].join("\n"));
+                    
+                    $(".div_homes_columns").append(column);
+                    //var p1 = column.clone();
+                    //$(".div_homes_columns").append(p1);
+
+
+
+
+                    console.log(arreglo[i]["id"]);
+                } 
+            });
+        }
+
+
+        function loadDataSector(selectedSector) {
+            $("#sectorName").append("<text class='remove'>" + selectedSector + "</text>");
+            $("#numberHomes").append("<text class='remove'>" + selectedSector + "</text>");
+            $("#averageVulnerability").append("<text class='remove'>  " + selectedSector + "</text>");
+        }
+
+
+
+
+
+
+
+    </script>
+
+}
