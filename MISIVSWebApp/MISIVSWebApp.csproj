@@ -189,7 +189,6 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Controllers\FichasWebController.cs" />
-    <Compile Include="Controllers\ModeloMatematicoController.cs" />
     <Compile Include="Controllers\ViviendasController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\ItemVariableController.cs" />
@@ -207,16 +206,17 @@
     <Compile Include="Models\ClasificacionEvaluacion.cs" />
     <Compile Include="Models\EvaluacionFicha.cs" />
     <Compile Include="Models\Ficha.cs" />
-    <Compile Include="Models\ItemParametro.cs" />
+    <Compile Include="Models\ItemClasificacion.cs" />
     <Compile Include="Models\ItemVariable.cs" />
     <Compile Include="Models\DBHelper.cs" />
     <Compile Include="Models\DBMathModelHelper.cs" />
     <Compile Include="Models\ModeloMatematico.cs" />
     <Compile Include="Models\Opcion.cs" />
-    <Compile Include="Models\OpcionesClasificacion.cs" />
+    <Compile Include="Models\OpcionesPuntaje.cs" />
     <Compile Include="Models\Parametro.cs" />
-    <Compile Include="Models\ParametroEvaluacion.cs" />
     <Compile Include="Models\ParametroModelo.cs" />
+    <Compile Include="Models\PuntajeClasificacion.cs" />
+    <Compile Include="Models\PuntajeClasificacionEvaluacion.cs" />
     <Compile Include="Models\Respuesta.cs" />
     <Compile Include="Models\RespuestaOpcion.cs" />
     <Compile Include="Models\RespuestaOpcionMultiple.cs" />
@@ -348,11 +348,6 @@
     <Content Include="Views\FichasWeb\Details.cshtml" />
     <Content Include="Views\FichasWeb\Edit.cshtml" />
     <Content Include="Views\FichasWeb\Index.cshtml" />
-    <Content Include="Views\ModeloMatematico\Create.cshtml" />
-    <Content Include="Views\ModeloMatematico\Delete.cshtml" />
-    <Content Include="Views\ModeloMatematico\Details.cshtml" />
-    <Content Include="Views\ModeloMatematico\Edit.cshtml" />
-    <Content Include="Views\ModeloMatematico\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

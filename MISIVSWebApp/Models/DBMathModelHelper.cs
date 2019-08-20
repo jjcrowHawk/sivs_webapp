@@ -8,19 +8,20 @@ namespace MISIVSWebApp.Models
     public partial class DBMathModelHelper : DbContext
     {
         public DBMathModelHelper()
-            : base("name=SIVSMathModelDB")
+            : base("name=SivsMathModelDB")
         {
         }
 
         public virtual DbSet<Clasificacion> Clasificacion { get; set; }
         public virtual DbSet<ClasificacionEvaluacion> ClasificacionEvaluacion { get; set; }
         public virtual DbSet<EvaluacionFicha> EvaluacionFicha { get; set; }
-        public virtual DbSet<ItemParametro> ItemParametro { get; set; }
+        public virtual DbSet<ItemClasificacion> ItemClasificacion { get; set; }
         public virtual DbSet<ModeloMatematico> ModeloMatematico { get; set; }
-        public virtual DbSet<OpcionesClasificacion> OpcionesClasificacion { get; set; }
+        public virtual DbSet<OpcionesPuntaje> OpcionesPuntaje { get; set; }
         public virtual DbSet<Parametro> Parametro { get; set; }
-        public virtual DbSet<ParametroEvaluacion> ParametroEvaluacion { get; set; }
         public virtual DbSet<ParametroModelo> ParametroModelo { get; set; }
+        public virtual DbSet<PuntajeClasificacion> PuntajeClasificacion { get; set; }
+        public virtual DbSet<PuntajeClasificacionEvaluacion> PuntajeClasificacionEvaluacion { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -29,20 +30,30 @@ namespace MISIVSWebApp.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Clasificacion>()
-                .Property(e => e.categoria)
-                .IsUnicode(false);
+                .Property(e => e.peso_relativo)
+                .HasPrecision(5, 2);
 
             modelBuilder.Entity<Clasificacion>()
                 .HasMany(e => e.ClasificacionEvaluacion)
                 .WithRequired(e => e.Clasificacion)
-                .HasForeignKey(e => e.clasificacion_ficha)
+                .HasForeignKey(e => e.clasificacion_evaluada)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Clasificacion>()
-                .HasMany(e => e.OpcionesClasificacion)
+                .HasMany(e => e.ItemClasificacion)
                 .WithRequired(e => e.Clasificacion)
                 .HasForeignKey(e => e.clasificacion_relacion)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Clasificacion>()
+                .HasMany(e => e.PuntajeClasificacion)
+                .WithRequired(e => e.Clasificacion)
+                .HasForeignKey(e => e.clasificacion_puntaje)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ClasificacionEvaluacion>()
+                .Property(e => e.peso_relativo)
+                .HasPrecision(5, 2);
 
             modelBuilder.Entity<EvaluacionFicha>()
                 .Property(e => e.puntaje)
@@ -59,7 +70,7 @@ namespace MISIVSWebApp.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<EvaluacionFicha>()
-                .HasMany(e => e.ParametroEvaluacion)
+                .HasMany(e => e.PuntajeClasificacionEvaluacion)
                 .WithRequired(e => e.EvaluacionFicha)
                 .HasForeignKey(e => e.evaluacion)
                 .WillCascadeOnDelete(false);
@@ -99,30 +110,30 @@ namespace MISIVSWebApp.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Parametro>()
-                .HasMany(e => e.ItemParametro)
-                .WithRequired(e => e.Parametro)
-                .HasForeignKey(e => e.parametro_relacion)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Parametro>()
                 .HasMany(e => e.ParametroModelo)
                 .WithRequired(e => e.Parametro)
                 .HasForeignKey(e => e.parametro_asignado)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Parametro>()
-                .HasMany(e => e.ParametroEvaluacion)
-                .WithRequired(e => e.Parametro)
-                .HasForeignKey(e => e.parametro_evaluado)
+            modelBuilder.Entity<PuntajeClasificacion>()
+                .Property(e => e.nombre)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<PuntajeClasificacion>()
+                .Property(e => e.penalizacion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<PuntajeClasificacion>()
+                .HasMany(e => e.OpcionesPuntaje)
+                .WithRequired(e => e.PuntajeClasificacion)
+                .HasForeignKey(e => e.puntaje)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<ParametroEvaluacion>()
-                .Property(e => e.puntaje_relativo)
-                .HasPrecision(5, 2);
-
-            modelBuilder.Entity<ParametroModelo>()
-                .Property(e => e.peso_relativo)
-                .HasPrecision(5, 2);
+            modelBuilder.Entity<PuntajeClasificacion>()
+                .HasMany(e => e.PuntajeClasificacionEvaluacion)
+                .WithRequired(e => e.PuntajeClasificacion)
+                .HasForeignKey(e => e.puntaje_respuesta_clasificacion)
+                .WillCascadeOnDelete(false);
         }
     }
 }

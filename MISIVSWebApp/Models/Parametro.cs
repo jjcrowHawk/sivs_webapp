@@ -13,9 +13,7 @@ namespace MISIVSWebApp.Models
         public Parametro()
         {
             Clasificacion = new HashSet<Clasificacion>();
-            ItemParametro = new HashSet<ItemParametro>();
             ParametroModelo = new HashSet<ParametroModelo>();
-            ParametroEvaluacion = new HashSet<ParametroEvaluacion>();
         }
 
         public int id { get; set; }
@@ -28,12 +26,6 @@ namespace MISIVSWebApp.Models
         public virtual ICollection<Clasificacion> Clasificacion { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ItemParametro> ItemParametro { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ParametroModelo> ParametroModelo { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ParametroEvaluacion> ParametroEvaluacion { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace MISIVSWebApp.Models
         {
             RespuestaOpcionSimple = new HashSet<RespuestaOpcionSimple>();
             RespuestaOpcion = new HashSet<RespuestaOpcion>();
-            OpcionClasificacion = new HashSet<OpcionesClasificacion>();
+            OpcionPuntaje = new HashSet<OpcionesPuntaje>();
         }
 
         public int id { get; set; }
@@ -43,6 +43,6 @@ namespace MISIVSWebApp.Models
 
         [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OpcionesClasificacion> OpcionClasificacion { get; set; }
+        public virtual ICollection<OpcionesPuntaje> OpcionPuntaje { get; set; }
     }
 }

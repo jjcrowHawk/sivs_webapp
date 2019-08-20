@@ -13,7 +13,8 @@ namespace MISIVSWebApp.Models
         public Clasificacion()
         {
             ClasificacionEvaluacion = new HashSet<ClasificacionEvaluacion>();
-            OpcionesClasificacion = new HashSet<OpcionesClasificacion>();
+            ItemClasificacion = new HashSet<ItemClasificacion>();
+            PuntajeClasificacion = new HashSet<PuntajeClasificacion>();
         }
 
         public int id { get; set; }
@@ -21,10 +22,11 @@ namespace MISIVSWebApp.Models
         [StringLength(200)]
         public string nombre { get; set; }
 
-        public int puntaje { get; set; }
+        public int valor_minimo { get; set; }
 
-        [StringLength(1)]
-        public string categoria { get; set; }
+        public int valor_maximo { get; set; }
+
+        public decimal peso_relativo { get; set; }
 
         public int parametro_clasificacion { get; set; }
 
@@ -34,6 +36,9 @@ namespace MISIVSWebApp.Models
         public virtual Parametro Parametro { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OpcionesClasificacion> OpcionesClasificacion { get; set; }
+        public virtual ICollection<ItemClasificacion> ItemClasificacion { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PuntajeClasificacion> PuntajeClasificacion { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace MISIVSWebApp.Models
         {
             Opcion = new HashSet<Opcion>();
             Respuesta = new HashSet<Respuesta>();
-            ItemParametro = new HashSet<ItemParametro>();
+            ItemClasificacion = new HashSet<ItemClasificacion>();
         }
 
         public int id { get; set; }
@@ -46,6 +46,6 @@ namespace MISIVSWebApp.Models
 
         [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ItemParametro> ItemParametro { get; set; }
+        public virtual ICollection<ItemClasificacion> ItemClasificacion { get; set; }
     }
 }

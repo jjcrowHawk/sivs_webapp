@@ -11,9 +11,13 @@ namespace MISIVSWebApp.Models
     {
         public int id { get; set; }
 
-        public int evaluacion { get; set; }
+        public int puntaje { get; set; }
 
-        public int clasificacion_ficha { get; set; }
+        public decimal peso_relativo { get; set; }
+
+        public int clasificacion_evaluada { get; set; }
+
+        public int evaluacion { get; set; }
 
         public virtual Clasificacion Clasificacion { get; set; }
 

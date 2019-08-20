@@ -6,32 +6,33 @@ namespace MISIVSWebApp.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("EvaluacionFicha")]
-    public partial class EvaluacionFicha
+    [Table("PuntajeClasificacion")]
+    public partial class PuntajeClasificacion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EvaluacionFicha()
+        public PuntajeClasificacion()
         {
-            ClasificacionEvaluacion = new HashSet<ClasificacionEvaluacion>();
+            OpcionesPuntaje = new HashSet<OpcionesPuntaje>();
             PuntajeClasificacionEvaluacion = new HashSet<PuntajeClasificacionEvaluacion>();
         }
 
         public int id { get; set; }
 
-        public decimal? puntaje { get; set; }
+        [StringLength(200)]
+        public string nombre { get; set; }
 
-        public decimal? puntaje_relativo { get; set; }
+        public int puntaje { get; set; }
 
-        public DateTime fecha_generada { get; set; }
+        [Required]
+        [StringLength(10)]
+        public string penalizacion { get; set; }
 
-        public int ficha_evaluacion { get; set; }
+        public int clasificacion_puntaje { get; set; }
 
-        public int modelo_evaluado { get; set; }
+        public virtual Clasificacion Clasificacion { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClasificacionEvaluacion> ClasificacionEvaluacion { get; set; }
-
-        public virtual ModeloMatematico ModeloMatematico { get; set; }
+        public virtual ICollection<OpcionesPuntaje> OpcionesPuntaje { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PuntajeClasificacionEvaluacion> PuntajeClasificacionEvaluacion { get; set; }

@@ -11,12 +11,6 @@ namespace MISIVSWebApp.Models
     {
         public int id { get; set; }
 
-        public int valor_min { get; set; }
-
-        public int valor_max { get; set; }
-
-        public decimal peso_relativo { get; set; }
-
         public int parametro_asignado { get; set; }
 
         public int modelo { get; set; }

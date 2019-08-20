@@ -6,17 +6,17 @@ namespace MISIVSWebApp.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("OpcionesClasificacion")]
-    public partial class OpcionesClasificacion
+    [Table("OpcionesPuntaje")]
+    public partial class OpcionesPuntaje
     {
         public int id { get; set; }
 
-        public int clasificacion_relacion { get; set; }
+        public int puntaje { get; set; }
 
-        public int opcion_relacion { get; set; }
+        public int opcion_puntaje { get; set; }
 
-        public virtual Clasificacion Clasificacion { get; set; }
-
+        public virtual PuntajeClasificacion PuntajeClasificacion { get; set; }
+        
         public virtual Opcion Opcion { get; set; }
     }
 }
