@@ -104,6 +104,10 @@ namespace MISIVSWebApp.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Parametro>()
+                .Property(e => e.peso_relativo)
+                .HasPrecision(5, 2);
+
+            modelBuilder.Entity<Parametro>()
                 .HasMany(e => e.Clasificacion)
                 .WithRequired(e => e.Parametro)
                 .HasForeignKey(e => e.parametro_clasificacion)

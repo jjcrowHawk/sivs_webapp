@@ -18,6 +18,8 @@ namespace MISIVSWebApp.Models
 
         public int id { get; set; }
 
+        public decimal peso_relativo { get; set;}
+
         [Required]
         [StringLength(200)]
         public string nombre { get; set; }

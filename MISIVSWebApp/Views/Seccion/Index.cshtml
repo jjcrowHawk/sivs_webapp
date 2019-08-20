@@ -4,18 +4,21 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div style="column-count:2;">
+    <h2 style="margin-bottom:2%;">Seccion</h2>
+    <p style="float:right; text-decoration:underline;">
+        @Html.ActionLink("Create New Seccion", "Create")
+    </p>
+</div>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.nombre)
+            name
+            @*Html.DisplayNameFor(model => model.nombre)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.activo)
+            active
+            @*Html.DisplayNameFor(model => model.activo)*@
         </th>
         <th></th>
     </tr>

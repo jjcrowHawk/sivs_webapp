@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MISIVSWebApp.Models.Clasificacion>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="column-count:2;">
+    <h2 style="margin-bottom:2%;">Parameter Clasifications</h2>
+    <p style="float:right; text-decoration:underline;">
+        @Html.ActionLink("Create New Clasification", "Create")
+    </p>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            Parameter
+            @*Html.DisplayNameFor(model => model.Parametro.nombre)*@
+        </th>
+        <th>
+            name
+            @*Html.DisplayNameFor(model => model.nombre)*@
+        </th>
+        <th>
+            min_value
+            @*Html.DisplayNameFor(model => model.valor_minimo)*@
+        </th>
+        <th>
+            max_value
+            @*Html.DisplayNameFor(model => model.valor_maximo)*@
+        </th>
+        <th>
+            relative_weight
+            @*Html.DisplayNameFor(model => model.peso_relativo)*@
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Parametro.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.valor_minimo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.valor_maximo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.peso_relativo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

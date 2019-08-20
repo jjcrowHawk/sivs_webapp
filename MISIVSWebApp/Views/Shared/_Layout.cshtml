@@ -10,6 +10,7 @@
     <!-- FontAwesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css" integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/fontawesome.css" integrity="sha384-1rquJLNOM3ijoueaaeS5m+McXPJCGdr5HcA03/VHXxcp2kX2sUrQDmFc3jR5i/C7" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Content/sidenav.css">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Scripts.Render("~/bundles/modernizr")
 
@@ -46,7 +47,15 @@
                     @Html.ActionLink("Variables", "Index", "Variable")
                 </li>
                 <li>
-                    @Html.ActionLink("Math Models/Equations", "Index", "ModeloMatematico")
+                    <button class="dropdown-btn">
+                        Math Models
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container">
+                        @Html.ActionLink("Models", "Index", "ModeloMatematico")
+                        @Html.ActionLink("Parameters", "Index", "Parametro")
+                        @Html.ActionLink("Parameter Clasifications","Index","Clasificacion")
+                    </div>
                 </li>
             </ul>
         </nav>
@@ -89,6 +98,7 @@
 
     <!-- Other JS -->
     <script src="~/Scripts/navbar.js"></script>
+    <script src="~/Scripts/sidenav.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     @RenderSection("scripts", required: false)
