@@ -5,6 +5,8 @@
 }
 
 <link rel="stylesheet" href="~/Content/ConsultSectors.css" />
+<link rel="stylesheet" href="~/Content/modal_info.css" />
+
 
 
 <h2>@ViewBag.Title</h2>
@@ -40,7 +42,7 @@
             <div class="col-md-4">
                 <div class="info-class" id="sectorName">
                     <text class="bold">Sector Name:</text>
-                    
+
                 </div>
                 <div class="info-class" id="numberHomes">
                     <text class="bold">Numbers of register homes:</text>
@@ -65,11 +67,8 @@
                 <p class="center">Choose a Feature to Consult:</p>
             </div>
         </div>
-        <select class="col-md-2 selector" id="selector">
-            <option value="Use">Use</option>
-            <option value="Material">Material</option>
-            <option value="Structure">Structure</option>
-            <option value="Quality">Quality</option>
+        <select class="col-md-2 selector" id="item_selector">
+            <option selected disabled>Select the variable</option>
         </select>
         <div class="col-md-4">
             <div class="abc">
@@ -86,7 +85,7 @@
 
     </div>
 
-    
+
 
 
 
@@ -95,21 +94,22 @@
 
 
 
-
-@section scripts{ 
+@section scripts{
+    <script src="~/Scripts/Components/Modalinfo.js"></script>
     <script>
-        $("#btn_search").click(function () {
-            $("#ResultPanel").css("visibility", "visible");
-            var selectedSector = $("#selector").children("option:selected").val();
-            $(".remove").remove();
-            loadDataSector(selectedSector);
-            loadDataHomes(selectedSector);
+            $("#btn_search").click(function () {
+                $("#ResultPanel").css("visibility", "visible");
+                var selectedSector = $("#selector").children("option:selected").val();
+                $(".remove").remove();
+                loadDataSector(selectedSector);
+                loadDataHomes(selectedSector);
 
-        });
+            });
 
         function loadDataHomes(selectedSector) {
             $.get("/Home/ViviendasBySector/" + selectedSector, function (data, status) {
                 var arreglo = data.data;
+                contenedorModalInfo.$data["fichasData"] = data.data;
                 $("#div_homes").append("<div class='remove row div_homes_columns'></div>");
                 for (var i = 0; i < arreglo.length; i++) {
                     var column = $([
@@ -117,12 +117,12 @@
                         "   <div class='info-class bloque'>",
                         "       <img src='/Content/Static/profile.jpg' alt='Home Picture' class='img'>",
                         "       <p class='center white_text'>" + arreglo[i]["inspeccion_id"] + "</p>",
-                        "       <a class='button_variation' href='/VulnerabilityReport/"+arreglo[i]["id"]+"'>View Vulnerability Report</a>",
-                        "       <a class='button_variation' href='/Viviendas/Details/"+arreglo[i]["id"]+"'>View Information Report</a>",
+                        "       <a class='button_variation' href='javascript:;' onclick='showVulnerabilityInfo("+i+")'>View Vulnerability Report</button>",
+                        "       <a class='button_variation' href='/Viviendas/Details/" + arreglo[i]["id"] + "'>View Information Report</a>",
                         "   </div>",
                         "</div>"
                     ].join("\n"));
-                    
+
                     $(".div_homes_columns").append(column);
                     //var p1 = column.clone();
                     //$(".div_homes_columns").append(p1);
@@ -131,7 +131,7 @@
 
 
                     console.log(arreglo[i]["id"]);
-                } 
+                }
             });
         }
 
@@ -140,6 +140,21 @@
             $("#sectorName").append("<text class='remove'>" + selectedSector + "</text>");
             $("#numberHomes").append("<text class='remove'>" + selectedSector + "</text>");
             $("#averageVulnerability").append("<text class='remove'>  " + selectedSector + "</text>");
+        }
+
+        function showVulnerabilityInfo(index) {
+            var vivienda = contenedorModalInfo.$data["fichasData"][index];
+            //console.log("This item: " + JSON.stringify(contenedorModalInfo.$data["fichasData"][index]));
+            $("<div id='componente_modal_info'></div >").appendTo('body')
+            var ModalInfo = Vue.extend(modalInfo);
+            var modal_instance = new ModalInfo({
+                propsData: {
+                    id: vivienda.id,
+                    inspeccion_id: vivienda.inspeccion_id,
+                    address: vivienda.ubicacion,
+                }
+            });
+            modal_instance.$mount("#componente_modal_info");
         }
 
 

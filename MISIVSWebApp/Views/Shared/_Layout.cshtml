@@ -35,13 +35,13 @@
                     @Html.ActionLink("Consult Reports", "ConsultReports", "Home")
                 </li>
                 <li>
-                    @Html.ActionLink("Items from Variables", "Index", "ItemVariable")
+                    @Html.ActionLink("Items for Variables", "Index", "ItemVariable")
                 </li>
                 <li>
                     @Html.ActionLink("Options", "Index", "Opcion")
                 </li>
                 <li>
-                    @Html.ActionLink("Section", "Index", "Seccion")
+                    @Html.ActionLink("Sections", "Index", "Seccion")
                 </li>
                 <li>
                     @Html.ActionLink("Variables", "Index", "Variable")
@@ -54,7 +54,8 @@
                     <div class="dropdown-container">
                         @Html.ActionLink("Models", "Index", "ModeloMatematico")
                         @Html.ActionLink("Parameters", "Index", "Parametro")
-                        @Html.ActionLink("Parameter Clasifications","Index","Clasificacion")
+                        @Html.ActionLink("Parameter Clasifications", "Index", "Clasificacion")
+                        @Html.ActionLink("Scores per Clasification", "Index", "PuntajeClasificacion")
                     </div>
                 </li>
             </ul>
@@ -100,6 +101,7 @@
     <script src="~/Scripts/navbar.js"></script>
     <script src="~/Scripts/sidenav.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="~/Scripts/vue.js"></script>
 
     @RenderSection("scripts", required: false)
 

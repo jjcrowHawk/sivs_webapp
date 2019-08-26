@@ -15,18 +15,19 @@ namespace MISIVSWebApp.Controllers
     public class HomeController : Controller
     {
         private DBHelper db = new DBHelper();
+        private DBMathModelHelper mathDB = new DBMathModelHelper();
 
         public ActionResult Index()
         {
-          
-            var num_sectores= db.Vivienda.GroupBy((v) => v.sector).Select((group) => new { name= group.Key, count= group.Count()}).ToList().Count();
+
+            var num_sectores = db.Vivienda.GroupBy((v) => v.sector).Select((group) => new { name = group.Key, count = group.Count() }).ToList().Count();
             var num_fichas = db.Ficha.Where((f) => f.activo == true).ToList().Count();
             var num_casas = db.Vivienda.ToList().Count();
-            Trace.WriteLine("query:"+num_sectores);
+            Trace.WriteLine("query:" + num_sectores);
             ViewBag.Sectors = num_sectores;
             ViewBag.Homes = num_casas;
             ViewBag.Reports = num_fichas;
-            ViewBag.Blocks ="No seas sapo, no preguntes";
+            ViewBag.Blocks = "No seas sapo, no preguntes";
 
             return View();
         }
@@ -56,7 +57,7 @@ namespace MISIVSWebApp.Controllers
         public ActionResult ConsultReports()
         {
             ViewBag.Title = "Consult Reports";
-            
+
 
             return View();
         }
@@ -67,7 +68,7 @@ namespace MISIVSWebApp.Controllers
             var fichaList = db.Ficha.ToList();
             return Json(new { data = fichaList }, JsonRequestBehavior.AllowGet);*/
             db.Configuration.ProxyCreationEnabled = false;
-            var fichaList = db.Ficha.Include(f => f.Vivienda).Where(i => i.activo==true);
+            var fichaList = db.Ficha.Include(f => f.Vivienda).Where(i => i.activo == true);
 
             foreach (Ficha fic in fichaList)
             {
@@ -94,8 +95,22 @@ namespace MISIVSWebApp.Controllers
 
 
 
-            
+
             return Json(new { data = viviendasList }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetViviendaVulnerabilityScore(int id) {
+            var vivienda= db.Vivienda.Single(v => v.id.Equals(id));
+            var ficha = vivienda.Ficha.First();
+            if (ficha != null) {
+                var respuestas= ficha.Respuesta.Where(r => r.RespuestaOpcionMultiple.Count!= 0 || r.RespuestaOpcionSimple.Count !=0);
+                var parametros = mathDB.Parametro;
+
+                foreach (Respuesta r in respuestas) {
+                    Trace.WriteLine("Respuesta: " +r.id + " of item: "+ r.ItemVariable.nombre);
+                }
+            }
+            return Json(new { }, JsonRequestBehavior.AllowGet);
         }
 
     }

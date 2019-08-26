@@ -190,6 +190,7 @@
     <Compile Include="Controllers\ClasificacionController.cs" />
     <Compile Include="Controllers\ModeloMatematicoController.cs" />
     <Compile Include="Controllers\ParametroController.cs" />
+    <Compile Include="Controllers\PuntajeClasificacionController.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Controllers\FichasWebController.cs" />
     <Compile Include="Controllers\ViviendasController.cs" />
@@ -245,6 +246,7 @@
     <Content Include="Content\ConsultSectors.css" />
     <Content Include="Content\home_index.css" />
     <Content Include="Content\login.css" />
+    <Content Include="Content\modal_info.css" />
     <Content Include="Content\Static\avatar.png" />
     <Content Include="Content\Static\block.png" />
     <Content Include="Content\Static\document.png" />
@@ -294,6 +296,8 @@
     <None Include="Properties\PublishProfiles\SIVSWebApp - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\SIVSWebApp - Web Deploy2.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\Components\Modalinfo.js" />
+    <Content Include="Scripts\Components\SectorStatisticComponent.js" />
     <Content Include="Scripts\sidenav.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -369,6 +373,11 @@
     <Content Include="Views\Clasificacion\Details.cshtml" />
     <Content Include="Views\Clasificacion\Edit.cshtml" />
     <Content Include="Views\Clasificacion\Index.cshtml" />
+    <Content Include="Views\PuntajeClasificacion\Create.cshtml" />
+    <Content Include="Views\PuntajeClasificacion\Delete.cshtml" />
+    <Content Include="Views\PuntajeClasificacion\Details.cshtml" />
+    <Content Include="Views\PuntajeClasificacion\Edit.cshtml" />
+    <Content Include="Views\PuntajeClasificacion\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
