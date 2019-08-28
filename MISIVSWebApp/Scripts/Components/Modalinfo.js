@@ -28,7 +28,7 @@
         },
         getVulnerabilityIndex() {
             $.get("/Home/GetViviendaVulnerabilityScore/" + this.id, function (data, status) {
-                console.log("Got RESPONSE!!!");
+                alert("Got RESPONSE!!!");
             })
         }
 

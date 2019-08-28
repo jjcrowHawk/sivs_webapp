@@ -102,9 +102,25 @@ namespace MISIVSWebApp.Controllers
         public ActionResult GetViviendaVulnerabilityScore(int id) {
             var vivienda= db.Vivienda.Single(v => v.id.Equals(id));
             var ficha = vivienda.Ficha.First();
+            int puntajeAcumulado = 0;
+            float puntajeRelativo = 0.00f;
             if (ficha != null) {
                 var respuestas= ficha.Respuesta.Where(r => r.RespuestaOpcionMultiple.Count!= 0 || r.RespuestaOpcionSimple.Count !=0);
-                var parametros = mathDB.Parametro;
+                var parametros = mathDB.Parametro.Include(p => p.Clasificacion) ;
+                foreach (Parametro parametro in parametros) {
+                    foreach(Clasificacion clasificacion in parametro.Clasificacion)
+                    {
+                        int puntaje_respuesta = 0;
+                        float puntaje_respuesta_relativo = 0.00f;
+                        var itemsClasificacion = clasificacion.ItemClasificacion.Select(ic => ic.ItemVariable);
+                        IEnumerable<Respuesta> respuestasClasificacion = respuestas.Where(r => itemsClasificacion.Contains(r.ItemVariable));
+                        foreach(Respuesta r in respuestasClasificacion)
+                        {
+                            Trace.WriteLine("respuesta with item: "+r.ItemVariable.nombre + "for Class:  "+clasificacion.nombre);
+                        }
+                        Trace.WriteLine("==============");
+                    }
+                }
 
                 foreach (Respuesta r in respuestas) {
                     Trace.WriteLine("Respuesta: " +r.id + " of item: "+ r.ItemVariable.nombre);

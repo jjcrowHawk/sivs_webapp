@@ -15,8 +15,10 @@ namespace MISIVSWebApp.Models
 
         public int item_relacion { get; set; }
 
+        [ForeignKey("clasificacion_relacion")]
         public virtual Clasificacion Clasificacion { get; set; }
-        
+
+        [ForeignKey("item_relacion")]
         public virtual ItemVariable ItemVariable { get; set; }
     }
 }
