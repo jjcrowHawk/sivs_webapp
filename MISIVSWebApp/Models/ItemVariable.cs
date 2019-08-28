@@ -35,6 +35,7 @@ namespace MISIVSWebApp.Models
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
         public bool activo { get; set; }
 
+        [ForeignKey("variable_item")]
         public virtual Variable Variable { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -47,5 +48,20 @@ namespace MISIVSWebApp.Models
         [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItemClasificacion> ItemClasificacion { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            var variable = obj as ItemVariable;
+            if (variable == null)
+                return false;
+            if (variable == this)
+                return true;
+            return id == variable.id;
+        }
+
+        public override int GetHashCode()
+        {
+            return 1877310944 + id.GetHashCode();
+        }
     }
 }

@@ -16,6 +16,8 @@
 }
 
 .modal-container {
+    max-height: 100%;
+    overflow-y: auto;
     width: 80%;
     margin: 0px auto;
     /*padding: 20px 30px;*/

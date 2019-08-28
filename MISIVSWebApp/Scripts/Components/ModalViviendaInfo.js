@@ -1,32 +1,27 @@
-﻿const modalInfo = {
+const modalViviendaInfo = {
     props: {
         inspeccion_id: String,
         id: Number,
         address: String,
-        score: String,
-        score_weight: String,
+        location: String,
+        elevation: String,
+        inspection_date: String,
+        inspector: String,
     },
     watch: {
-        score_data: {
-            inmediate: true,
-            handler: function (newVal, oldVal) {
-                console.log("New Score: " + newVal);
-            }
-        },
-        score_weight_data: function (newVal, oldVal) {
-            console.log("New Weight: " + newVal);
-        },
-        id_data: function (newVal, oldVal) {
-            /*this.getVulnerabilityIndex();*/
-        }
+        /*id_data: function (newVal, oldVal) {
+            this.getVulnerabilityIndex();
+        }*/
     },
     data() {
         return {
             inspeccion_id_data: "",
-            id_data: 0,
+            id_data: -1,
             address_data: "",
-            score_data: "",
-            score_weight_data: "",
+            location_data: "",
+            elevation_data: "",
+            inspection_date_data: "",
+            inspector_data: "",
         }
     },
     methods: {
@@ -42,7 +37,8 @@
                 this.$parent.showModal = false;
             }*/
         },
-        getVulnerabilityIndex() {
+
+        /*getVulnerabilityIndex() {
             var instance = this;
             $.get("/Home/GetViviendaVulnerabilityScore/" + this.id_data, function (data, status) {
                 //alert("Got RESPONSE!!! " + JSON.stringify(data) + "with status: " + status);
@@ -55,13 +51,15 @@
         setScores(puntaje, puntaje_porcentaje) {
             this.score_data = puntaje;
             this.score_weight_data = "% " + puntaje_porcentaje;
-        },
+        },*/
         getData() {
-            this.score_data = this.score;
-            this.score_weight_data = this.score_weight;
-            this.address_data = this.address;
-            this.id_data = this.id;
             this.inspeccion_id_data = this.inspeccion_id;
+            this.id_data = this.id;
+            this.address_data = this.address;
+            this.location_data = this.location;
+            this.elevation_data = this.elevation;
+            this.inspection_date_data = this.inspection_date;
+            this.inspector_data = this.inspector;
         }
 
     },
@@ -70,7 +68,7 @@
     },
     mounted() {
         this.getData();
-        this.getVulnerabilityIndex()
+        //this.getVulnerabilityIndex()
     },
     template: `
     <!-- template for the modal component -->
@@ -81,11 +79,11 @@
                 <div class="modal-container">
                 <div class="modal-header" style="text-align:center;background-color:#307FE2">
                    <h3 slot="header" style="margin:auto; color:white; font-weight: bolder;">
-                     Vulnerability Report
+                     Building Information
                     </h3>
                 </div>
                 <div class="modal-body">
-                   <h4>Vulnerability Analysis</h4>
+                   <h4>Inspection Information</h4>
                     <hr />
                     <table>
                         <tr>
@@ -106,16 +104,34 @@
                         </tr>
                         <tr>
                             <td class="td_label" style="text-decoration: underline;">
-                                Vulnerability score:
+                                Location:
                             </td>
                             <td>
-                                {{this.score_data}}
+                                {{this.location_data}}
                             </td>
+                        </tr>
+                        <tr>
                             <td class="td_label" style="text-decoration: underline;">
-                                Vulnerability percentage:
+                                Elevation:
                             </td>
                             <td>
-                                {{this.score_weight_data}}
+                                {{this.elevation_data}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_label" style="text-decoration: underline;">
+                                Inspection Date:
+                            </td>
+                            <td>
+                                {{this.inspection_date_data}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_label" style="text-decoration: underline;">
+                                Inspector:
+                            </td>
+                            <td>
+                                {{this.inspector_data}}
                             </td>
                         </tr>
                     </table> 
@@ -134,18 +150,15 @@
 }
 
 /* Variable contenedora de la instancia del componente telefono*/
-var contenedorModalInfo = new Vue({
-    el: '#componente_modal_info',
+var contenedorModalViviendaInfo = new Vue({
+    el: '#vivienda_modal_info',
     data: {
         showModal: false,
         fichasData: []
     },
     components: {
-        'modal-info': modalInfo
+        'modal-vivienda-info': modalViviendaInfo
     },
     methods: {
-        showVulnerabilityInfo(index) {
-            console.log("on parent: " + index);
-        }
     }
 })

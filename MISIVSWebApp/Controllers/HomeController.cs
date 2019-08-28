@@ -219,8 +219,8 @@ namespace MISIVSWebApp.Controllers
         public ActionResult GetViviendaVulnerabilityScore(int id) {
             var vivienda= db.Vivienda.Single(v => v.id.Equals(id));
             var ficha = vivienda.Ficha.First();
-            int puntajeAcumulado = 0;
-            float puntajeRelativo = 0.00f;
+            int puntaje_acumulado = 0;
+            float puntaje_relativo = 0.00f;
             if (ficha != null) {
                 var respuestas= ficha.Respuesta.Where(r => r.RespuestaOpcionMultiple.Count!= 0 || r.RespuestaOpcionSimple.Count !=0);
                 var parametros = mathDB.Parametro.Include(p => p.Clasificacion) ;
@@ -229,21 +229,83 @@ namespace MISIVSWebApp.Controllers
                     {
                         int puntaje_respuesta = 0;
                         float puntaje_respuesta_relativo = 0.00f;
-                        var itemsClasificacion = clasificacion.ItemClasificacion.Select(ic => ic.ItemVariable);
+
+                        IEnumerable<ItemVariable> itemsClasificacion = clasificacion.ItemClasificacion.Select(ic => ic.ItemVariable);
+                        Trace.WriteLine("===> Items on this clasification " + clasificacion.nombre + " : " + itemsClasificacion.Count());
                         IEnumerable<Respuesta> respuestasClasificacion = respuestas.Where(r => itemsClasificacion.Contains(r.ItemVariable));
-                        foreach(Respuesta r in respuestasClasificacion)
+                        //Trace.WriteLine("---> Responses on this clasification: " + respuestasClasificacion.Count());
+
+                        foreach (Respuesta r in respuestasClasificacion)
                         {
-                            Trace.WriteLine("respuesta with item: "+r.ItemVariable.nombre + "for Class:  "+clasificacion.nombre);
+                            Trace.WriteLine("*** respuesta id: "+ r.id +" with item: " + r.ItemVariable.nombre + "for Class:  " + clasificacion.nombre+ 
+                                " con respuestas simples: "+ r.RespuestaOpcionSimple.Count() + " y respuesta multiple: " +r.RespuestaOpcionMultiple.Count());
                         }
-                        Trace.WriteLine("==============");
+                        
+
+                        //Comparamos cada puntaje con las respuestas para ver si tienen las mismas opciones
+                        IEnumerable<PuntajeClasificacion> puntajesPosibles= clasificacion.PuntajeClasificacion;
+                        foreach(PuntajeClasificacion puntaje in puntajesPosibles)
+                        {
+
+                            IEnumerable<Opcion> opcionesPuntaje= puntaje.OpcionesPuntaje.Select(op => op.Opcion);
+                            List<Opcion> opcionesRespuesta = new List<Opcion>();
+                            foreach (Respuesta r in respuestasClasificacion) {
+                                if (r.RespuestaOpcionSimple.Count() != 0)
+                                {
+                                    Trace.WriteLine(" @@@ Respuesta simple con opcion: " + r.RespuestaOpcionSimple.First().Opcion.nombre);
+                                    opcionesRespuesta.Add(r.RespuestaOpcionSimple.First().Opcion);
+                                }
+                                else if (r.RespuestaOpcionMultiple.Count() != 0) {
+                                    opcionesRespuesta.AddRange(r.RespuestaOpcionMultiple.First().RespuestaOpcion.Select(ro => ro.Opcion));
+                                }
+                            }
+
+                            Trace.WriteLine("--->Puntaje to test: "+ puntaje.nombre);
+                            Trace.WriteLine("---> Puntaje options: " + opcionesPuntaje.Count());
+                            Trace.WriteLine("---> Respuesta options: " + opcionesRespuesta.Count());
+
+                            bool opcionesIguales = false;
+                            
+                            if (opcionesPuntaje.Count() < opcionesRespuesta.Count())
+                            {
+                                //Enumerable.Intersect(opcionesPuntaje.OrderBy(t => t.id), opcionesRespuesta.OrderBy(t => t.id));
+                                opcionesIguales = Enumerable.Intersect(opcionesPuntaje.OrderBy(t => t.id), opcionesRespuesta.OrderBy(t => t.id)).Count() == opcionesPuntaje.Count();//opcionesRespuesta.Contains(opcionesPuntaje.First());
+                            }
+                            else {
+                                opcionesIguales = Enumerable.SequenceEqual(opcionesPuntaje.OrderBy(t => t.id), opcionesRespuesta.OrderBy(t => t.id));
+                            }
+
+                            if (opcionesIguales) {
+                                Trace.WriteLine(">>>>>>>>>>>> Respuesta coincide con Puntaje: " + puntaje.nombre);
+
+                                if (puntaje.penalizacion.Equals("ninguna")) {
+                                    puntaje_respuesta = puntaje.puntaje;
+                                }
+                                else if (puntaje.penalizacion.Equals("positiva"))
+                                {
+                                    puntaje_respuesta += puntaje.puntaje;
+                                }
+                                else if (puntaje.penalizacion.Equals("negativa"))
+                                {
+                                    puntaje_respuesta -= puntaje.puntaje;
+                                }
+                            }
+                        }
+
+                        float factor_multiplicador = (float)puntaje_respuesta / (float)clasificacion.valor_maximo;
+                        puntaje_respuesta_relativo = (float)clasificacion.peso_relativo * factor_multiplicador;
+
+                        puntaje_acumulado += puntaje_respuesta;
+                        puntaje_relativo += puntaje_respuesta_relativo;
+                        
+
+                        Trace.WriteLine("Puntaje obtenido de esta clasificacion: "+ puntaje_respuesta + " , % "+puntaje_respuesta_relativo);
+                        Trace.WriteLine("=======================================");
                     }
                 }
 
-                foreach (Respuesta r in respuestas) {
-                    Trace.WriteLine("Respuesta: " +r.id + " of item: "+ r.ItemVariable.nombre);
-                }
             }
-            return Json(new { }, JsonRequestBehavior.AllowGet);
+            return Json(new { puntaje= puntaje_acumulado, puntaje_porcentaje= Math.Round(puntaje_relativo,3) }, JsonRequestBehavior.AllowGet);
         }
 
     }

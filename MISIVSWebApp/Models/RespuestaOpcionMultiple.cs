@@ -19,6 +19,7 @@ namespace MISIVSWebApp.Models
 
         public int respuesta_opcionmultiple { get; set; }
 
+        [ForeignKey("respuesta_opcionmultiple")]
         public virtual Respuesta Respuesta { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

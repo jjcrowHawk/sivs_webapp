@@ -7,7 +7,12 @@
 <link rel="stylesheet" href="~/Content/ConsultSectors.css" />
 <link rel="stylesheet" href="~/Content/modal_info.css" />
 
-
+<div id='componente_modal_info' ref="container">
+    <!--modal-info v-show="showModal">
+    </modal-info-->
+</div>
+<div id='vivienda_modal_info'>
+</div>
 
 <h2>@ViewBag.Title</h2>
 <hr />
@@ -67,8 +72,7 @@
                 <p class="center">Choose a Feature to Consult:</p>
             </div>
         </div>
-        <select class="col-md-2 selector" id="item_selector">
-        </select>
+        <select class="col-md-2 selector" id="item_selector"></select>
         <div class="col-md-4">
             <div class="abc">
                 <button id="btn_search2" class="button" type="button">Search</button>
@@ -97,6 +101,7 @@
 
 @section scripts{
     <script src="~/Scripts/Components/Modalinfo.js"></script>
+    <script src="~/Scripts/Components/ModalViviendainfo.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script>
         loadFeatures();
@@ -146,7 +151,7 @@
                         "       <img src='/Content/Static/profile.jpg' alt='Home Picture' class='img'>",
                         "       <p class='center white_text'>" + arreglo[i]["inspeccion_id"] + "</p>",
                         "       <a class='button_variation' href='javascript:;' onclick='showVulnerabilityInfo(" + i + ")'>View Vulnerability Report</button>",
-                        "       <a class='button_variation' href='/Viviendas/Details/" + arreglo[i]["id"] + "'>View Information Report</a>",
+                        "       <a class='button_variation' href='javascript:;' onclick='showViviendaInfo(" + i + ")'>View Information Report</a>",
                         "   </div>",
                         "</div>"
                     ].join("\n"));
@@ -168,17 +173,56 @@
 
         function showVulnerabilityInfo(index) {
             var vivienda = contenedorModalInfo.$data["fichasData"][index];
-            //console.log("This item: " + JSON.stringify(contenedorModalInfo.$data["fichasData"][index]));
-            $("<div id='componente_modal_info'></div >").appendTo('body')
+            /*contenedorModalInfo.$data["showModal"] = true;
+            contenedorModalInfo.$children[0].$data["id_data"] = vivienda.id;
+            contenedorModalInfo.$children[0].$data["inspeccion_id_data"] = vivienda.inspeccion_id;
+            contenedorModalInfo.$children[0].$data["address_data"] = vivienda.ubicacion;
+            contenedorModalInfo.$children[0].$data["score_data"] = "Calculating Result...";
+            contenedorModalInfo.$children[0].$data["score_weight_data"] = "Calculating Result...";*/
+            //$("<div id='componente_modal_info'></div >").appendTo('body')
+            /*$(`<modal-info id='${vivienda.id}'
+                inspeccion_id='${vivienda.inspeccion_id}'
+                address='${vivienda.ubicacion}'
+                score='Calculating Result...'
+                score_weight= 'Calculating Result...'
+               >
+                </modal-info>`).appendTo('#componente_modal_info')
+            */
             var ModalInfo = Vue.extend(modalInfo);
             var modal_instance = new ModalInfo({
                 propsData: {
                     id: vivienda.id,
                     inspeccion_id: vivienda.inspeccion_id,
                     address: vivienda.ubicacion,
+                    score: "Calculating result....",
+                    score_weight: "Calculating result....",
                 }
             });
-            modal_instance.$mount("#componente_modal_info");
+            modal_instance.$mount();
+            $("#componente_modal_info").append(modal_instance.$el);
+            contenedorModalInfo.$children.push(modal_instance);
+            //contenedorModalInfo.$children.push(modal_instance);=
+        }
+
+        function showViviendaInfo(index) {
+            var vivienda = contenedorModalInfo.$data["fichasData"][index];
+
+            var ModalViviendaInfo = Vue.extend(modalViviendaInfo);
+            var modal_instance = new ModalViviendaInfo({
+                propsData: {
+                    id: vivienda.id,
+                    inspeccion_id: vivienda.inspeccion_id,
+                    address: vivienda.ubicacion,
+                    location: vivienda.direccion,
+                    elevation: vivienda.elevacion,
+                    inspection_date: "loading info...",
+                    inspector: "loading info...",
+                }
+            });
+            modal_instance.$mount();
+            $("#vivienda_modal_info").append(modal_instance.$el);
+            contenedorModalViviendaInfo.$children.push(modal_instance);
+            //contenedorModalInfo.$children.push(modal_instance);=
         }
 
         function generatePieChart(selectedSector, feature) {
@@ -194,14 +238,14 @@
                     data2.push(key);
                     data3.push(arreglo[key]);
                 }
-                
-              
+
+
 
 
                 var altura1 = 500
                 var anchura1 = 960
                 var r = 200
-                
+
 
 
                 var colores = ['red', 'blue', 'yellow', 'orange', 'brown', 'purple']
@@ -215,7 +259,7 @@
                     .attr('height', altura1);
 
                 d3.selectAll("svg").attr("class", "remove2 remove");
-                
+
 
                 var group = canvas.append('g')
                     .attr("transform", "translate(480,250)");
@@ -243,7 +287,7 @@
                     .attr("transform", function (d) { return "translate(" + arc.centroid(d) + ")"; })
                     .attr("text-anchor", "middle")
                     .attr("font-size", "1.5em")
-                    .text(function (d) { return d.data +"%" });
+                    .text(function (d) { return d.data + "%" });
                 canvas.append("g")
                     .attr("transform", "translate(700,250)")
                     .selectAll(".categorias")
@@ -251,17 +295,17 @@
                     .enter()
                     .append("text")
                     .attr("transform", function (d) {
-                            return "translate(0,"+(data2.indexOf(d.data)*20)+")"
+                        return "translate(0," + (data2.indexOf(d.data) * 20) + ")"
                     })
                     .text(function (d) {
-                        return "Answer: "+d.data+" - Color: " +colores[data2.indexOf(d.data)]
+                        return "Answer: " + d.data + " - Color: " + colores[data2.indexOf(d.data)]
                     });
 
 
             });
         }
 
-        
+
 
 
 

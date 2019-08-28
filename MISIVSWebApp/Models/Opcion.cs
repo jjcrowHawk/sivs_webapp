@@ -31,6 +31,7 @@
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
         public bool activo { get; set; }
 
+        [ForeignKey("item_opcion")]
         public virtual ItemVariable ItemVariable { get; set; }
 
         [JsonIgnore]
@@ -44,5 +45,21 @@
         [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OpcionesPuntaje> OpcionPuntaje { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            var variable = obj as Opcion;
+            if (variable == null)
+                return false;
+            if (variable == this)
+                return true;
+            return id == variable.id;
+        }
+
+        public override int GetHashCode()
+        {
+            return 1877310955 + id.GetHashCode();
+        }
+
     }
 }

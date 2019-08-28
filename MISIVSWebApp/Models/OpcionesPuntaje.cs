@@ -15,8 +15,10 @@ namespace MISIVSWebApp.Models
 
         public int opcion_puntaje { get; set; }
 
+        [ForeignKey("puntaje")]
         public virtual PuntajeClasificacion PuntajeClasificacion { get; set; }
-        
+
+        [ForeignKey("opcion_puntaje")]
         public virtual Opcion Opcion { get; set; }
     }
 }

@@ -15,8 +15,10 @@ namespace MISIVSWebApp.Models
 
         public int opcion_respuestasimple { get; set; }
 
+        [ForeignKey("opcion_respuestasimple")]
         public virtual Opcion Opcion { get; set; }
 
+        [ForeignKey("respuesta")]
         public virtual Respuesta Respuesta1 { get; set; }
     }
 }
