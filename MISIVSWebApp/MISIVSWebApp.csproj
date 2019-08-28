@@ -191,6 +191,8 @@
     <Compile Include="Controllers\ModeloMatematicoController.cs" />
     <Compile Include="Controllers\ParametroController.cs" />
     <Compile Include="Controllers\PuntajeClasificacionController.cs" />
+    <Compile Include="Controllers\RespuestaOpcionSimplesController.cs" />
+    <Compile Include="Controllers\RespuestasController.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Controllers\FichasWebController.cs" />
     <Compile Include="Controllers\ViviendasController.cs" />
@@ -378,6 +380,16 @@
     <Content Include="Views\PuntajeClasificacion\Details.cshtml" />
     <Content Include="Views\PuntajeClasificacion\Edit.cshtml" />
     <Content Include="Views\PuntajeClasificacion\Index.cshtml" />
+    <Content Include="Views\Respuestas\Create.cshtml" />
+    <Content Include="Views\Respuestas\Delete.cshtml" />
+    <Content Include="Views\Respuestas\Details.cshtml" />
+    <Content Include="Views\Respuestas\Edit.cshtml" />
+    <Content Include="Views\Respuestas\Index.cshtml" />
+    <Content Include="Views\RespuestaOpcionSimples\Create.cshtml" />
+    <Content Include="Views\RespuestaOpcionSimples\Delete.cshtml" />
+    <Content Include="Views\RespuestaOpcionSimples\Details.cshtml" />
+    <Content Include="Views\RespuestaOpcionSimples\Edit.cshtml" />
+    <Content Include="Views\RespuestaOpcionSimples\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

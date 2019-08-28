@@ -1,0 +1,50 @@
+﻿@model MISIVSWebApp.Models.Respuesta
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Respuesta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ficha.inspector)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ficha.inspector)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemVariable.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemVariable.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.activo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

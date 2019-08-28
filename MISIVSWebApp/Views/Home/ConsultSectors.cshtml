@@ -68,7 +68,6 @@
             </div>
         </div>
         <select class="col-md-2 selector" id="item_selector">
-            <option selected disabled>Select the variable</option>
         </select>
         <div class="col-md-4">
             <div class="abc">
@@ -76,7 +75,9 @@
             </div>
         </div>
     </div>
+    <div id="Grafico" class="bubbleChart">
 
+    </div>
 
     <h3>Registered Homes</h3>
     <hr />
@@ -96,19 +97,46 @@
 
 @section scripts{
     <script src="~/Scripts/Components/Modalinfo.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
     <script>
-            $("#btn_search").click(function () {
-                $("#ResultPanel").css("visibility", "visible");
-                var selectedSector = $("#selector").children("option:selected").val();
-                $(".remove").remove();
-                loadDataSector(selectedSector);
-                loadDataHomes(selectedSector);
+        loadFeatures();
+        var globalColor = 0;
+        $("#btn_search").click(function () {
+            $("#ResultPanel").css("visibility", "visible");
+            var selectedSector = $("#selector").children("option:selected").val();
+            $(".remove").remove();
+            loadDataSector(selectedSector);
+            loadDataHomes(selectedSector);
+
+        });
+
+        $("#btn_search2").click(function () {
+            console.log("btn_search2 presionado");
+            $(".remove2").remove();
+            var selectedSector = $("#selector").children("option:selected").val();
+            var feature = $("#item_selector").children("option:selected").val();
+            generatePieChart(selectedSector, feature);
+
+
+        });
+
+        function loadFeatures() {
+            $.get("/Home/ConsultFeatures/", function (data, status) {
+                var arreglo = data.data;
+                for (var i = 0; i < arreglo.length; i++) {
+
+                    $("#item_selector").append("<option value='" + arreglo[i]["Key"] + "'>" + arreglo[i]["Key"] + "</option>");
+                }
+
 
             });
+        }
+
 
         function loadDataHomes(selectedSector) {
             $.get("/Home/ViviendasBySector/" + selectedSector, function (data, status) {
                 var arreglo = data.data;
+                $("#numberHomes").append("<text class='remove'>" + arreglo.length + "</text>");
                 contenedorModalInfo.$data["fichasData"] = data.data;
                 $("#div_homes").append("<div class='remove row div_homes_columns'></div>");
                 for (var i = 0; i < arreglo.length; i++) {
@@ -117,7 +145,7 @@
                         "   <div class='info-class bloque'>",
                         "       <img src='/Content/Static/profile.jpg' alt='Home Picture' class='img'>",
                         "       <p class='center white_text'>" + arreglo[i]["inspeccion_id"] + "</p>",
-                        "       <a class='button_variation' href='javascript:;' onclick='showVulnerabilityInfo("+i+")'>View Vulnerability Report</button>",
+                        "       <a class='button_variation' href='javascript:;' onclick='showVulnerabilityInfo(" + i + ")'>View Vulnerability Report</button>",
                         "       <a class='button_variation' href='/Viviendas/Details/" + arreglo[i]["id"] + "'>View Information Report</a>",
                         "   </div>",
                         "</div>"
@@ -126,11 +154,7 @@
                     $(".div_homes_columns").append(column);
                     //var p1 = column.clone();
                     //$(".div_homes_columns").append(p1);
-
-
-
-
-                    console.log(arreglo[i]["id"]);
+                    //console.log(arreglo[i]["id"]);
                 }
             });
         }
@@ -138,7 +162,7 @@
 
         function loadDataSector(selectedSector) {
             $("#sectorName").append("<text class='remove'>" + selectedSector + "</text>");
-            $("#numberHomes").append("<text class='remove'>" + selectedSector + "</text>");
+
             $("#averageVulnerability").append("<text class='remove'>  " + selectedSector + "</text>");
         }
 
@@ -157,7 +181,87 @@
             modal_instance.$mount("#componente_modal_info");
         }
 
+        function generatePieChart(selectedSector, feature) {
 
+            $.get("/Home/ConsultFeatureStats/" + selectedSector + "/" + feature, function (data, status) {
+                var data1 = []
+                var data2 = []
+                var data3 = []
+                globalColor = -1;
+                var arreglo = data.data;
+                for (var key in arreglo) {
+                    data1.push({ "key": key, "": arreglo[key] });
+                    data2.push(key);
+                    data3.push(arreglo[key]);
+                }
+                
+              
+
+
+                var altura1 = 500
+                var anchura1 = 960
+                var r = 200
+                
+
+
+                var colores = ['red', 'blue', 'yellow', 'orange', 'brown', 'purple']
+
+                var color = d3.scaleOrdinal()
+                    .range(colores);
+
+                var canvas = d3.select('#Grafico')
+                    .append('svg')
+                    .attr('width', anchura1)
+                    .attr('height', altura1);
+
+                d3.selectAll("svg").attr("class", "remove2 remove");
+                
+
+                var group = canvas.append('g')
+                    .attr("transform", "translate(480,250)");
+
+
+                var arc = d3.arc()
+                    .innerRadius(0)
+                    .outerRadius(r);
+                var pie = d3.pie()
+                    .value(function (d) { return d; });
+
+                var arcs = group.selectAll(".arcs")
+                    .data(pie(data3))
+                    .enter()
+                    .append("g")
+                    .attr("class", "arc");
+
+                arcs.append("path")
+                    .attr("d", arc)
+                    .attr("fill", function (d) {
+                        globalColor += 1;
+                        return color(globalColor);
+                    });
+                arcs.append("text")
+                    .attr("transform", function (d) { return "translate(" + arc.centroid(d) + ")"; })
+                    .attr("text-anchor", "middle")
+                    .attr("font-size", "1.5em")
+                    .text(function (d) { return d.data +"%" });
+                canvas.append("g")
+                    .attr("transform", "translate(700,250)")
+                    .selectAll(".categorias")
+                    .data(pie(data2))
+                    .enter()
+                    .append("text")
+                    .attr("transform", function (d) {
+                            return "translate(0,"+(data2.indexOf(d.data)*20)+")"
+                    })
+                    .text(function (d) {
+                        return "Answer: "+d.data+" - Color: " +colores[data2.indexOf(d.data)]
+                    });
+
+
+            });
+        }
+
+        
 
 
 
