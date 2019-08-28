@@ -1,4 +1,4 @@
-namespace MISIVSWebApp.Models
+    namespace MISIVSWebApp.Models
 {
     using Newtonsoft.Json;
     using System;

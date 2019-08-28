@@ -18,6 +18,13 @@ namespace MISIVSWebApp
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Accounts", action = "Login", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Features",
+                url: "{controller}/{action}/{sector}/{feature}",
+                defaults: new { controller = "Home", action = "Index", feature = UrlParameter.Optional }
+            );
+
         }
     }
 }
