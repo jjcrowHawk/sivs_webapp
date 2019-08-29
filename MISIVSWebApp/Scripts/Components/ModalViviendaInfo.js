@@ -37,7 +37,33 @@ const modalViviendaInfo = {
                 this.$parent.showModal = false;
             }*/
         },
+        getFichaInfo() {
+            var instance = this;
+            $.get("/Home/GetFichaInformation/" + this.id_data, function (data, status) {
+                if (status == "success") {
+                    console.log(data);
+                    var fichaDate = new Date(parseInt(data.fecha_inspeccion.replace(/\/Date\((-?\d+)\)\//, '$1')));
+                    instance.inspection_date_data = fichaDate.toLocaleDateString("en-US");//`${fichaDate.getMonth()} - ${fichaDate.getUTCDay()} - ${fichaDate.getFullYear()}`;
+                    instance.inspector_data = data.inspector;
+                    instance.getRespuestasInfo(data.id);
+                }
+                else {
+                    console.log("Error de consulta ficha");
+                }
+            })
+        },
+        getRespuestasInfo(fichaId) {
+            var instance = this;
+            $.get("/Home/GetRespuestasFicha/" + fichaId, function (data, status) {
+                if (status == "success") {
+                    console.log(data);
 
+                }
+                else {
+                    console.log("Error de consulta respuesta");
+                }
+            })
+        },
         /*getVulnerabilityIndex() {
             var instance = this;
             $.get("/Home/GetViviendaVulnerabilityScore/" + this.id_data, function (data, status) {
@@ -68,6 +94,7 @@ const modalViviendaInfo = {
     },
     mounted() {
         this.getData();
+        this.getFichaInfo();
         //this.getVulnerabilityIndex()
     },
     template: `

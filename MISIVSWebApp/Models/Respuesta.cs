@@ -32,8 +32,10 @@ namespace MISIVSWebApp.Models
         [JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
         public bool activo { get; set; }
 
+        [ForeignKey("ficha_respuesta")]
         public virtual Ficha Ficha { get; set; }
 
+        [ForeignKey("item_respuesta")]
         public virtual ItemVariable ItemVariable { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

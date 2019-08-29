@@ -15,6 +15,7 @@ namespace MISIVSWebApp.Models
 
         public int seccion_rel { get; set; }
 
+        [ForeignKey("ficha_rel")]
         public virtual Ficha Ficha { get; set; }
 
         public virtual Seccion Seccion { get; set; }

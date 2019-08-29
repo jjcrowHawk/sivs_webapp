@@ -21,6 +21,7 @@ namespace MISIVSWebApp.Models
 
         public int ficha_anexo { get; set; }
 
+        [ForeignKey("ficha_anexo")]
         public virtual Ficha Ficha { get; set; }
     }
 }

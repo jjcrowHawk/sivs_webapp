@@ -1,17 +1,91 @@
-﻿@{
+﻿@model MISIVSWebApp.Models.Vivienda
+
+@{
     ViewBag.Title = "Consult Homes";
+    var myData = Json.Encode(ViewBag.sectores);
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<link rel="stylesheet" href="~/Content/ConsultSectors.css" />
+<link rel="stylesheet" href="~/Content/modal_info.css" />
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<div id='componente_modal_info' ref="container">
+    <!--modal-info v-show="showModal">
+    </modal-info-->
+</div>
+<div id='vivienda_modal_info'>
+</div>
+
+<h2>@ViewBag.Title</h2>
+<hr />
+<!--div class="row seachBox reloadable_content"-->
+    <div id="home_selector_info">
+        <home-selector>
+        </home-selector>
+    </div>
+<div id="ResultPanel">
+
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Components/Modalinfo.js"></script>
+    <script src="~/Scripts/Components/ModalViviendainfo.js"></script>
+    <script src="~/Scripts/Components/HomeSelector.js"></script>
+    <script>
+        var sectores = @Html.Raw( Json.Encode(myData) );
+        contenedorHomeSelector["$children"][0].$data.sectores= JSON.parse(sectores);
+        function showVulnerabilityInfo(index) {
+            var vivienda = contenedorModalInfo.$data["fichasData"][index];
+            /*contenedorModalInfo.$data["showModal"] = true;
+            contenedorModalInfo.$children[0].$data["id_data"] = vivienda.id;
+            contenedorModalInfo.$children[0].$data["inspeccion_id_data"] = vivienda.inspeccion_id;
+            contenedorModalInfo.$children[0].$data["address_data"] = vivienda.ubicacion;
+            contenedorModalInfo.$children[0].$data["score_data"] = "Calculating Result...";
+            contenedorModalInfo.$children[0].$data["score_weight_data"] = "Calculating Result...";*/
+            //$("<div id='componente_modal_info'></div >").appendTo('body')
+            /*$(`<modal-info id='${vivienda.id}'
+                inspeccion_id='${vivienda.inspeccion_id}'
+                address='${vivienda.ubicacion}'
+                score='Calculating Result...'
+                score_weight= 'Calculating Result...'
+               >
+                </modal-info>`).appendTo('#componente_modal_info')
+            */
+            var ModalInfo = Vue.extend(modalInfo);
+            var modal_instance = new ModalInfo({
+                propsData: {
+                    id: vivienda.id,
+                    inspeccion_id: vivienda.inspeccion_id,
+                    address: vivienda.ubicacion,
+                    score: "Calculating result....",
+                    score_weight: "Calculating result....",
+                }
+            });
+            modal_instance.$mount();
+            $("#componente_modal_info").append(modal_instance.$el);
+            contenedorModalInfo.$children.push(modal_instance);
+            //contenedorModalInfo.$children.push(modal_instance);=
+        }
+
+        function showViviendaInfo(index) {
+            var vivienda = contenedorModalInfo.$data["fichasData"][index];
+
+            var ModalViviendaInfo = Vue.extend(modalViviendaInfo);
+            var modal_instance = new ModalViviendaInfo({
+                propsData: {
+                    id: vivienda.id,
+                    inspeccion_id: vivienda.inspeccion_id,
+                    address: vivienda.ubicacion,
+                    location: vivienda.direccion,
+                    elevation: vivienda.elevacion,
+                    inspection_date: "loading info...",
+                    inspector: "loading info...",
+                }
+            });
+            modal_instance.$mount();
+            $("#vivienda_modal_info").append(modal_instance.$el);
+            contenedorModalViviendaInfo.$children.push(modal_instance);
+            //contenedorModalInfo.$children.push(modal_instance);=
+        }
+    </script>
+
+}

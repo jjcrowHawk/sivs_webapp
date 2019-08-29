@@ -31,7 +31,11 @@ namespace MISIVSWebApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClasificacionEvaluacion> ClasificacionEvaluacion { get; set; }
 
+        [ForeignKey("modelo_evaluado")]
         public virtual ModeloMatematico ModeloMatematico { get; set; }
+
+        [ForeignKey("ficha_evaluacion")]
+        public virtual Ficha Ficha { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PuntajeClasificacionEvaluacion> PuntajeClasificacionEvaluacion { get; set; }

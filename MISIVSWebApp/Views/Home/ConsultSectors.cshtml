@@ -55,7 +55,7 @@
             </div>
             <div class="col-md-4">
                 <div class="info-class" id="averageVulnerability">
-                    <text class="bold">Average vulnerability Index:</text>
+                    <text class="bold">Average vulnerability Index: </text>
                 </div>
 
             </div>
@@ -166,9 +166,13 @@
 
 
         function loadDataSector(selectedSector) {
-            $("#sectorName").append("<text class='remove'>" + selectedSector + "</text>");
+            $("#sectorName").append("<text class='remove'> " + selectedSector + "</text>");
 
-            $("#averageVulnerability").append("<text class='remove'>  " + selectedSector + "</text>");
+            $.get("/Home/GetSectorVulnerabilityScore/" + selectedSector, function (data, status) {
+                //if(status == "success")
+                $("#averageVulnerability").append("<text class='remove'>  " + `${data.puntaje} ( % ${data.puntaje_porcentaje} )` + "</text>");
+            });
+            
         }
 
         function showVulnerabilityInfo(index) {

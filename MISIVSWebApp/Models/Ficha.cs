@@ -45,6 +45,7 @@ namespace MISIVSWebApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Anexo> Anexo { get; set; }
 
+        [ForeignKey("vivienda_ficha")]
         public virtual Vivienda Vivienda { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
