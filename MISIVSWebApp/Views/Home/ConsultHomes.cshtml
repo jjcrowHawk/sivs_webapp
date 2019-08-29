@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="~/Content/ConsultSectors.css" />
 <link rel="stylesheet" href="~/Content/modal_info.css" />
 
+
 <div id='componente_modal_info' ref="container">
     <!--modal-info v-show="showModal">
     </modal-info-->
@@ -66,8 +67,12 @@
             //contenedorModalInfo.$children.push(modal_instance);=
         }
 
-        function showViviendaInfo(index) {
-            var vivienda = contenedorModalInfo.$data["fichasData"][index];
+        function prueba() {
+            alert("Si te puedo llamar bb");
+        }
+
+        function showViviendaInfo(vivienda) {
+            //var vivienda = contenedorModalInfo.$data["fichasData"][index];
 
             var ModalViviendaInfo = Vue.extend(modalViviendaInfo);
             var modal_instance = new ModalViviendaInfo({
